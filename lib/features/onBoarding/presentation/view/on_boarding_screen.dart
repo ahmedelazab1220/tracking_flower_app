@@ -50,7 +50,7 @@ class OnBoarding extends StatelessWidget {
             padding: EdgeInsets.only(bottom: 18.0),
             child: Center(
               child: custom.TextField(
-                label: 'Version 1.0.0 (2000)',
+                label: 'Version 1.0.0 (2006)',
                 textStyle: TextStyle(fontSize: 12, color: AppColors.gray),
               ),
             ),
