@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
           title: 'Tracking Flower App',
           theme: AppTheme.appTheme,
           routes: AppRoutes.routes,
-          home: const OnBoarding(), // Replace with your initial screen
+          home: const OnBoarding(),
         );
       },
     );
