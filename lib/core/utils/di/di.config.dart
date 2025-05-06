@@ -25,6 +25,12 @@ import '../../../domain/auth/repo/auth_repo.dart' as _i1047;
 import '../../../domain/auth/usecase/forget_password_use_case.dart' as _i615;
 import '../../../domain/auth/usecase/reset_password_use_case.dart' as _i313;
 import '../../../domain/auth/usecase/verify_reset_code_use_case.dart' as _i684;
+import '../../../features/forget_password/presentation/view_model/email_verification/email_verification_cubit.dart'
+    as _i725;
+import '../../../features/forget_password/presentation/view_model/forget_password_cubit/forget_password_cubit.dart'
+    as _i3;
+import '../../../features/forget_password/presentation/view_model/reset_password/reset_password_cubit.dart'
+    as _i216;
 import '../bloc_observer/bloc_observer_service.dart' as _i649;
 import '../datasource_excution/api_manager.dart' as _i28;
 import '../datasource_excution/dio_module.dart' as _i953;
@@ -76,6 +82,19 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i313.ResetPasswordUseCase(gh<_i1047.AuthRepo>()));
     gh.factory<_i684.VerifyResetCodeUseCase>(
         () => _i684.VerifyResetCodeUseCase(gh<_i1047.AuthRepo>()));
+    gh.factory<_i725.EmailVerificationCubit>(() => _i725.EmailVerificationCubit(
+          gh<_i684.VerifyResetCodeUseCase>(),
+          gh<_i615.ForgetPasswordUseCase>(),
+          gh<_i468.Validator>(),
+        ));
+    gh.factory<_i216.ResetPasswordCubit>(() => _i216.ResetPasswordCubit(
+          gh<_i313.ResetPasswordUseCase>(),
+          gh<_i468.Validator>(),
+        ));
+    gh.factory<_i3.ForgetPasswordCubit>(() => _i3.ForgetPasswordCubit(
+          gh<_i615.ForgetPasswordUseCase>(),
+          gh<_i468.Validator>(),
+        ));
     return this;
   }
 }
