@@ -11,7 +11,7 @@ class RouteInitializer {
 
   String? computeInitialRoute() {
     var isRememberMe = sharedPreferences.getBool(Constants.isRememberMe);
-    if (isRememberMe != null && isRememberMe) {
+    if (isRememberMe != null) {
       return AppRoutes.loginRoute;
     } else {
       return AppRoutes.onBoardingRoute;
