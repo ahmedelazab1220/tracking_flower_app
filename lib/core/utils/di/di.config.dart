@@ -26,7 +26,7 @@ import '../../../data/auth/data_source/remote/auth_remote_data_source_impl.dart'
     as _i173;
 import '../../../data/auth/repo_impl/auth_repo_impl.dart' as _i15;
 import '../../../domain/auth/repo/auth_repo.dart' as _i1047;
-import '../../../domain/auth/usecase/login_usecase.dart' as _i829;
+import '../../../domain/auth/use_case/login_use_case.dart' as _i829;
 import '../../../features/login/presentation/view_model/login_cubit.dart'
     as _i638;
 import '../../functions/initial_route_function.dart' as _i687;

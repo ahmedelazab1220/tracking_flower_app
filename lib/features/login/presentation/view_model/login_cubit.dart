@@ -6,7 +6,7 @@ import '../../../../core/base/base_state.dart';
 import '../../../../core/utils/datasource_excution/api_result.dart';
 import '../../../../core/utils/validator/validator.dart';
 import '../../../../domain/auth/entity/login_request_entity.dart';
-import '../../../../domain/auth/usecase/login_usecase.dart';
+import '../../../../domain/auth/use_case/login_use_case.dart';
 import 'login_state.dart';
 
 @injectable
