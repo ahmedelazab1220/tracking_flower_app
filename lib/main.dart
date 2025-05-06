@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:logger/logger.dart';
-import 'package:tracking_flower_app/features/onBoarding/presentation/view/on_boarding_screen.dart';
 
 import 'core/theme/app_theme.dart';
 import 'core/utils/app_starter.dart';
@@ -11,6 +10,7 @@ import 'core/utils/bloc_observer/bloc_observer_service.dart';
 import 'core/utils/constants.dart';
 import 'core/utils/di/di.dart';
 import 'core/utils/routes/app_routes.dart';
+// import 'features/onBoarding/presentation/view/on_boarding_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,9 +47,19 @@ class MyApp extends StatelessWidget {
           title: 'Tracking Flower App',
           theme: AppTheme.appTheme,
           routes: AppRoutes.routes,
-          home: const OnBoarding(),
+          home: const SplashScreen(),
         );
       },
     );
+  }
+}
+
+class SplashScreen extends StatelessWidget {
+  const SplashScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
   }
 }
