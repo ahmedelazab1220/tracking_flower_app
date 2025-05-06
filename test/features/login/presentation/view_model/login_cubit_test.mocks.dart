@@ -40,19 +40,15 @@ class MockLoginUsecase extends _i1.Mock implements _i2.LoginUsecase {
   @override
   _i3.Future<_i4.Result<void>> call(_i5.LoginRequestEntity? request) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [request],
-        ),
-        returnValue:
-            _i3.Future<_i4.Result<void>>.value(_i6.dummyValue<_i4.Result<void>>(
-          this,
-          Invocation.method(
-            #call,
-            [request],
-          ),
-        )),
-      ) as _i3.Future<_i4.Result<void>>);
+            Invocation.method(#call, [request]),
+            returnValue: _i3.Future<_i4.Result<void>>.value(
+              _i6.dummyValue<_i4.Result<void>>(
+                this,
+                Invocation.method(#call, [request]),
+              ),
+            ),
+          )
+          as _i3.Future<_i4.Result<void>>);
 }
 
 /// A class which mocks [Validator].
@@ -64,15 +60,12 @@ class MockValidator extends _i1.Mock implements _i7.Validator {
   }
 
   @override
-  String? validateEmail(String? input) => (super.noSuchMethod(Invocation.method(
-        #validateEmail,
-        [input],
-      )) as String?);
+  String? validateEmail(String? input) =>
+      (super.noSuchMethod(Invocation.method(#validateEmail, [input]))
+          as String?);
 
   @override
   String? validatePassword(String? input) =>
-      (super.noSuchMethod(Invocation.method(
-        #validatePassword,
-        [input],
-      )) as String?);
+      (super.noSuchMethod(Invocation.method(#validatePassword, [input]))
+          as String?);
 }

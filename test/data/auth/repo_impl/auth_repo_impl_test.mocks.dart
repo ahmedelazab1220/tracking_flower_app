@@ -36,13 +36,8 @@ import 'package:tracking_flower_app/data/auth/models/login_response_dto.dart'
 
 class _FakeLoginResponseDto_0 extends _i1.SmartFake
     implements _i2.LoginResponseDto {
-  _FakeLoginResponseDto_0(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
+  _FakeLoginResponseDto_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 /// A class which mocks [AuthRemoteDataSource].
@@ -57,19 +52,15 @@ class MockAuthRemoteDataSource extends _i1.Mock
   @override
   _i4.Future<_i2.LoginResponseDto> login(_i5.LoginRequestDto? request) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #login,
-          [request],
-        ),
-        returnValue:
-            _i4.Future<_i2.LoginResponseDto>.value(_FakeLoginResponseDto_0(
-          this,
-          Invocation.method(
-            #login,
-            [request],
-          ),
-        )),
-      ) as _i4.Future<_i2.LoginResponseDto>);
+            Invocation.method(#login, [request]),
+            returnValue: _i4.Future<_i2.LoginResponseDto>.value(
+              _FakeLoginResponseDto_0(
+                this,
+                Invocation.method(#login, [request]),
+              ),
+            ),
+          )
+          as _i4.Future<_i2.LoginResponseDto>);
 }
 
 /// A class which mocks [AuthLocalDataSource].
@@ -82,69 +73,56 @@ class MockAuthLocalDataSource extends _i1.Mock
   }
 
   @override
-  _i4.Future<void> saveToken(
-    String? key,
-    String? value,
-  ) =>
+  _i4.Future<void> saveToken(String? key, String? value) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #saveToken,
-          [
-            key,
-            value,
-          ],
-        ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+            Invocation.method(#saveToken, [key, value]),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
 
   @override
-  _i4.Future<String?> getToken(String? key) => (super.noSuchMethod(
-        Invocation.method(
-          #getToken,
-          [key],
-        ),
-        returnValue: _i4.Future<String?>.value(),
-      ) as _i4.Future<String?>);
+  _i4.Future<String?> getToken(String? key) =>
+      (super.noSuchMethod(
+            Invocation.method(#getToken, [key]),
+            returnValue: _i4.Future<String?>.value(),
+          )
+          as _i4.Future<String?>);
 
   @override
-  _i4.Future<void> deleteToken(String? key) => (super.noSuchMethod(
-        Invocation.method(
-          #deleteToken,
-          [key],
-        ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+  _i4.Future<void> deleteToken(String? key) =>
+      (super.noSuchMethod(
+            Invocation.method(#deleteToken, [key]),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
 
   @override
-  _i4.Future<void> setRememberMe(bool? value) => (super.noSuchMethod(
-        Invocation.method(
-          #setRememberMe,
-          [value],
-        ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+  _i4.Future<void> setRememberMe(bool? value) =>
+      (super.noSuchMethod(
+            Invocation.method(#setRememberMe, [value]),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
 
   @override
-  _i4.Future<bool> isRememberMe() => (super.noSuchMethod(
-        Invocation.method(
-          #isRememberMe,
-          [],
-        ),
-        returnValue: _i4.Future<bool>.value(false),
-      ) as _i4.Future<bool>);
+  _i4.Future<bool> isRememberMe() =>
+      (super.noSuchMethod(
+            Invocation.method(#isRememberMe, []),
+            returnValue: _i4.Future<bool>.value(false),
+          )
+          as _i4.Future<bool>);
 
   @override
-  _i4.Future<void> clearAll() => (super.noSuchMethod(
-        Invocation.method(
-          #clearAll,
-          [],
-        ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+  _i4.Future<void> clearAll() =>
+      (super.noSuchMethod(
+            Invocation.method(#clearAll, []),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
 }
 
 /// A class which mocks [ApiManager].
@@ -158,17 +136,13 @@ class MockApiManager extends _i1.Mock implements _i7.ApiManager {
   @override
   _i4.Future<_i8.Result<T>> execute<T>(_i4.Future<T> Function()? apiCall) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #execute,
-          [apiCall],
-        ),
-        returnValue:
-            _i4.Future<_i8.Result<T>>.value(_i9.dummyValue<_i8.Result<T>>(
-          this,
-          Invocation.method(
-            #execute,
-            [apiCall],
-          ),
-        )),
-      ) as _i4.Future<_i8.Result<T>>);
+            Invocation.method(#execute, [apiCall]),
+            returnValue: _i4.Future<_i8.Result<T>>.value(
+              _i9.dummyValue<_i8.Result<T>>(
+                this,
+                Invocation.method(#execute, [apiCall]),
+              ),
+            ),
+          )
+          as _i4.Future<_i8.Result<T>>);
 }
