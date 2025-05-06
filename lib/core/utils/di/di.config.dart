@@ -22,6 +22,9 @@ import '../../../data/auth/data_source/remote/auth_remote_data_source_impl.dart'
     as _i173;
 import '../../../data/auth/repo_impl/auth_repo_impl.dart' as _i15;
 import '../../../domain/auth/repo/auth_repo.dart' as _i1047;
+import '../../../domain/auth/usecase/forget_password_use_case.dart' as _i615;
+import '../../../domain/auth/usecase/reset_password_use_case.dart' as _i313;
+import '../../../domain/auth/usecase/verify_reset_code_use_case.dart' as _i684;
 import '../bloc_observer/bloc_observer_service.dart' as _i649;
 import '../datasource_excution/api_manager.dart' as _i28;
 import '../datasource_excution/dio_module.dart' as _i953;
@@ -57,13 +60,22 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i974.PrettyPrinter>(() => loggerModule.prettyPrinter);
     gh.singleton<_i649.BlocObserverService>(
         () => _i649.BlocObserverService(gh<_i974.Logger>()));
-    gh.factory<_i1047.AuthRepo>(() => _i15.AuthRepoImpl());
     gh.lazySingleton<_i361.Dio>(
         () => dioModule.provideDio(gh<_i558.FlutterSecureStorage>()));
     gh.factory<_i1064.AuthRetrofitClient>(
         () => _i1064.AuthRetrofitClient(gh<_i361.Dio>()));
     gh.factory<_i774.AuthRemoteDataSource>(
         () => _i173.AuthRemoteDataSourceImpl(gh<_i1064.AuthRetrofitClient>()));
+    gh.factory<_i1047.AuthRepo>(() => _i15.AuthRepoImpl(
+          gh<_i28.ApiManager>(),
+          gh<_i774.AuthRemoteDataSource>(),
+        ));
+    gh.factory<_i615.ForgetPasswordUseCase>(
+        () => _i615.ForgetPasswordUseCase(gh<_i1047.AuthRepo>()));
+    gh.factory<_i313.ResetPasswordUseCase>(
+        () => _i313.ResetPasswordUseCase(gh<_i1047.AuthRepo>()));
+    gh.factory<_i684.VerifyResetCodeUseCase>(
+        () => _i684.VerifyResetCodeUseCase(gh<_i1047.AuthRepo>()));
     return this;
   }
 }
