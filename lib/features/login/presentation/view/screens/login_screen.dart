@@ -20,7 +20,13 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final viewModel = getIt<LoginCubit>();
+  late final LoginCubit viewModel;
+
+  @override
+  void initState() {
+    super.initState();
+    viewModel = getIt<LoginCubit>();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +52,9 @@ class _LoginScreenState extends State<LoginScreen> {
           },
           child: SingleChildScrollView(
             child: Form(
+              onChanged: () {
+                viewModel.doIntent(ValidateButtonAction());
+              },
               key: viewModel.formKey,
               child: const Padding(
                 padding: EdgeInsets.all(16),

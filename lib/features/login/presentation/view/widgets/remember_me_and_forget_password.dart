@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../core/assets/app_colors.dart';
 import '../../../../../core/utils/l10n/locale_keys.g.dart';
+import '../../../../../core/utils/routes/app_routes.dart';
 import '../../view_model/login_cubit.dart';
 import '../../view_model/login_state.dart';
 
@@ -23,25 +24,32 @@ class RememberMeAndForgotPassword extends StatelessWidget {
                   (previous, current) =>
                       previous.isRememberMe != current.isRememberMe,
               builder: (context, state) {
-                return Row(
-                  children: [
-                    Checkbox(
-                      value: viewModel.isRememberMe,
-                      onChanged: (value) {
-                        viewModel.doIntent(RememberMeAction(value!));
-                      },
-                      activeColor: AppColors.pink,
-                    ),
-                    Text(
-                      LocaleKeys.RememberMe.tr(),
-                      style: Theme.of(context).textTheme.titleSmall,
-                    ),
-                  ],
+                return InkWell(
+                  onTap: () {
+                    viewModel.doIntent(RememberMeAction(!state.isRememberMe!));
+                  },
+                  child: Row(
+                    children: [
+                      Checkbox(
+                        value: viewModel.isRememberMe,
+                        onChanged: (value) {
+                          viewModel.doIntent(RememberMeAction(value!));
+                        },
+                        activeColor: AppColors.pink,
+                      ),
+                      Text(
+                        LocaleKeys.RememberMe.tr(),
+                        style: Theme.of(context).textTheme.titleSmall,
+                      ),
+                    ],
+                  ),
                 );
               },
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, AppRoutes.forgetPasswordRoute);
+              },
               style: TextButton.styleFrom(
                 foregroundColor: AppColors.black,
                 padding: EdgeInsets.zero,

@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tracking_flower_app/features/login/presentation/view_model/login_state.dart';
 
 import '../../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../view_model/login_cubit.dart';
@@ -15,9 +14,6 @@ class LoginForm extends StatelessWidget {
     return Column(
       children: [
         TextFormField(
-          onChanged: (value) {
-            viewModel.doIntent(ValidateButtonAction());
-          },
           autovalidateMode: AutovalidateMode.onUserInteraction,
           controller: viewModel.emailController,
           validator: (value) => viewModel.validator.validateEmail(value ?? ""),
@@ -30,9 +26,6 @@ class LoginForm extends StatelessWidget {
         ),
         const SizedBox(height: 24),
         TextFormField(
-          onChanged: (value) {
-            viewModel.doIntent(ValidateButtonAction());
-          },
           autovalidateMode: AutovalidateMode.onUserInteraction,
           controller: viewModel.passwordController,
           validator:

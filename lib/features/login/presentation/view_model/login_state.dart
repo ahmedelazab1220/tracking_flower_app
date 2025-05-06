@@ -35,4 +35,4 @@ final class RememberMeAction extends LoginAction {
   RememberMeAction(this.isRememberMe);
 }
 
-class ValidateButtonAction extends LoginAction {}
+final class ValidateButtonAction extends LoginAction {}

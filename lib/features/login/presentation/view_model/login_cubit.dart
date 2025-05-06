@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:tracking_flower_app/domain/auth/entity/login_request_entity.dart';
-import 'package:tracking_flower_app/features/login/presentation/view_model/login_state.dart';
 
 import '../../../../core/base/base_state.dart';
 import '../../../../core/utils/datasource_excution/api_result.dart';
 import '../../../../core/utils/validator/validator.dart';
+import '../../../../domain/auth/entity/login_request_entity.dart';
 import '../../../../domain/auth/usecase/login_usecase.dart';
+import 'login_state.dart';
 
 @injectable
 class LoginCubit extends Cubit<LoginState> {
@@ -72,14 +72,17 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   void _validateButton() {
-    if (emailController.text.isEmpty || passwordController.text.isEmpty) {
-      validate = false;
-    } else if (!formKey.currentState!.validate()) {
-      validate = false;
-    } else {
-      validate = true;
-    }
-    emit(state.copyWith(loginState: BaseInitialState(), isValidate: validate));
+    final isValid = formKey.currentState?.validate() ?? false;
+    final isFilled =
+        emailController.text.isNotEmpty && passwordController.text.isNotEmpty;
+    final shouldValidate = isFilled && isValid;
+
+    emit(
+      state.copyWith(
+        loginState: BaseInitialState(),
+        isValidate: shouldValidate,
+      ),
+    );
   }
 
   void dispose() {
