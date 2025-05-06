@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../features/forget_password/presentation/view/email_verification_screen.dart';
+import '../../../features/forget_password/presentation/view/forget_password_screen.dart';
 import '../../../features/forget_password/presentation/view/reset_password_screen.dart';
 
 class AppRoutes {
@@ -11,6 +12,7 @@ class AppRoutes {
   static const String resetPasswordRoute = '/reset-password';
   static const String emailVerificationRoute = '/email-verification';
   static Map<String, Widget Function(BuildContext)> routes = {
+    forgetPasswordRoute: (context) => const ForgetPasswordScreen(),
     resetPasswordRoute: (context) => const ResetPasswordScreen(),
     emailVerificationRoute: (context) => const EmailVerificationScreen(),
   };
