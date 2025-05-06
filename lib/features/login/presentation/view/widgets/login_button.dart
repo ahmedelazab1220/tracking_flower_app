@@ -16,19 +16,16 @@ class LoginButton extends StatelessWidget {
     return BlocBuilder<LoginCubit, LoginState>(
       builder: (context, state) {
         return ElevatedButton(
-          onPressed:
-              viewModel.validate
-                  ? () {
-                    viewModel.doIntent(LoginRequestAction());
-                  }
-                  : null,
-          style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
+          onPressed: () {
+            if (viewModel.validate) {
+              viewModel.doIntent(LoginRequestAction());
+            }
+          },
+          style: ElevatedButton.styleFrom(
             backgroundColor:
                 viewModel.validate
-                    ? WidgetStateProperty.all(AppColors.pink)
-                    : WidgetStateProperty.all(
-                      AppColors.black[AppColors.colorCode30],
-                    ),
+                    ? AppColors.pink
+                    : AppColors.black[AppColors.colorCode30],
           ),
           child: Text(LocaleKeys.Login.tr()),
         );

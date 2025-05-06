@@ -23,15 +23,26 @@ Future<void> main() async {
       path: Constants.assetsTranslations,
       startLocale: AppStarter.startLocale ?? const Locale(Constants.en),
       fallbackLocale: const Locale(Constants.en),
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
 
-class MyApp extends StatelessWidget {
-  final routeInitializer = getIt<RouteInitializer>();
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
 
-  MyApp({super.key});
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  late final RouteInitializer routeInitializer;
+
+  @override
+  void didChangeDependencies() {
+    routeInitializer = getIt<RouteInitializer>();
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {

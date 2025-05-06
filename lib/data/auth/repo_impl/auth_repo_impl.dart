@@ -1,9 +1,9 @@
 import 'package:injectable/injectable.dart';
-import 'package:tracking_flower_app/domain/auth/entity/login_request_entity.dart';
 
 import '../../../core/utils/constants.dart';
 import '../../../core/utils/datasource_excution/api_manager.dart';
 import '../../../core/utils/datasource_excution/api_result.dart';
+import '../../../domain/auth/entity/login_request_entity.dart';
 import '../../../domain/auth/repo/auth_repo.dart';
 import '../data_source/contract/auth_local_data_source.dart';
 import '../data_source/contract/auth_remote_data_source.dart';
@@ -26,7 +26,7 @@ class AuthRepoImpl implements AuthRepo {
   Future<Result<void>> login(LoginRequestEntity request) {
     var response = _apiManager.execute<LoginResponseDto>(() async {
       final response = await _authRemoteDataSource.login(
-        LoginRequestDto(email: request.email, password: request.password),
+        LoginRequestDto.fromDomain(request),
       );
       _authLocalDataSource.saveToken(Constants.token, response.token ?? "");
       _authLocalDataSource.setRememberMe(request.isRememberMe);

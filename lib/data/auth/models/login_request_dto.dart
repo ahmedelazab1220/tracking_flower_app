@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../../domain/auth/entity/login_request_entity.dart';
+
 part 'login_request_dto.g.dart';
 
 @JsonSerializable()
@@ -17,5 +19,9 @@ class LoginRequestDto {
 
   Map<String, dynamic> toJson() {
     return _$LoginRequestDtoToJson(this);
+  }
+
+  factory LoginRequestDto.fromDomain(LoginRequestEntity entity) {
+    return LoginRequestDto(email: entity.email, password: entity.password);
   }
 }
