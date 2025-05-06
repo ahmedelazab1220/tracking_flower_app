@@ -64,7 +64,15 @@ void main() {
           return SuccessResult(dto);
         });
         when(
-          mockAuthRemoteDataSource.login(any),
+          mockAuthRemoteDataSource.login(
+            argThat(
+              predicate<LoginRequestDto>(
+                (dto) =>
+                    dto.email == request.email &&
+                    dto.password == request.password,
+              ),
+            ),
+          ),
         ).thenAnswer((_) async => response);
         when(
           mockAuthLocalDataSource.saveToken(Constants.token, response.token!),
@@ -95,6 +103,87 @@ void main() {
           mockAuthLocalDataSource.setRememberMe(entity.isRememberMe),
         ).called(1);
         expect(result, isA<SuccessResult<LoginResponseDto>>());
+      },
+    );
+
+    test(
+      'when remote.login throws should return FailureResult and not call local',
+      () async {
+        // Arrange
+        final request = LoginRequestDto(
+          email: 'test@example.com',
+          password: 'test',
+        );
+        final entity = LoginRequestEntity(
+          email: request.email,
+          password: request.password,
+          isRememberMe: true,
+        );
+        final response = LoginResponseDto(
+          message: 'success',
+          token: 'test_token',
+        );
+        provideDummy<Result<LoginResponseDto>>(
+          SuccessResult<LoginResponseDto>(response),
+        );
+        provideDummy<Result<dynamic>>(
+          SuccessResult<LoginResponseDto>(response),
+        );
+        final exception = Exception('some exception');
+        when(mockApiManager.execute<LoginResponseDto>(any)).thenAnswer((
+          inv,
+        ) async {
+          final callback =
+              inv.positionalArguments[0] as Future<LoginResponseDto> Function();
+          try {
+            final dto = await callback();
+            return SuccessResult(dto);
+          } catch (e) {
+            return FailureResult(exception);
+          }
+        });
+        when(mockAuthRemoteDataSource.login(request)).thenThrow(exception);
+
+        // Act
+        final result = await authRepoImpl.login(entity);
+
+        // Assert
+        verify(
+          mockAuthRemoteDataSource.login(
+            argThat(
+              predicate<LoginRequestDto>(
+                (dto) =>
+                    dto.email == request.email &&
+                    dto.password == request.password,
+              ),
+            ),
+          ),
+        ).called(1);
+        verifyZeroInteractions(mockAuthLocalDataSource);
+        expect(result, isA<FailureResult<LoginResponseDto>>());
+      },
+    );
+
+    test(
+      'when ApiManager.execute throws should bubble up and not call remote/local',
+      () {
+        // Arrange
+        final entity = LoginRequestEntity(
+          email: 'test@example.com',
+          password: 'test',
+          isRememberMe: false,
+        );
+        final exception = Exception('executor crashed');
+        provideDummy<Result<LoginResponseDto>>(FailureResult(exception));
+        when(
+          mockApiManager.execute<LoginResponseDto>(any),
+        ).thenThrow(exception);
+
+        // Act
+        // Assert
+        verifyZeroInteractions(mockAuthRemoteDataSource);
+        verifyZeroInteractions(mockAuthLocalDataSource);
+        expect(() => authRepoImpl.login(entity), throwsA(same(exception)));
       },
     );
   });
