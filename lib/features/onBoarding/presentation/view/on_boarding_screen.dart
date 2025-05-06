@@ -1,10 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:tracking_flower_app/core/assets/app_colors.dart';
-import 'package:tracking_flower_app/core/assets/app_images.dart';
-import 'package:tracking_flower_app/core/utils/l10n/locale_keys.g.dart';
-import 'package:tracking_flower_app/features/onBoarding/presentation/view/custom_button.dart';
-import 'package:tracking_flower_app/features/onBoarding/presentation/view/text_field.dart'
-    as custom;
+
+import '../../../../core/assets/app_colors.dart';
+import '../../../../core/assets/app_images.dart';
+import '../../../../core/utils/l10n/locale_keys.g.dart';
+import 'custom_button.dart';
+import 'text_field.dart' as custom;
 
 class OnBoarding extends StatelessWidget {
   const OnBoarding({super.key});
@@ -21,11 +22,11 @@ class OnBoarding extends StatelessWidget {
               child: Image.asset(AppImages.onBoardingLogo, fit: BoxFit.cover),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
             child: Text(
-              LocaleKeys.WelcomeToFloweryRiderApp,
-              style: TextStyle(
+              tr(LocaleKeys.WelcomeToFloweryRiderApp),
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w900,
                 color: AppColors.black,
@@ -34,16 +35,16 @@ class OnBoarding extends StatelessWidget {
             ),
           ),
           CustomButton(
-            label: LocaleKeys.Login,
+            label: tr(LocaleKeys.Login),
             onPressed: () {},
             color: AppColors.pink,
-            textStyle: const TextStyle(color: AppColors.white, fontSize: 18),
+            textStyle: const TextStyle(color: AppColors.white, fontSize: 15),
           ),
           CustomButton(
-            label: LocaleKeys.ApplyNow,
+            label: tr(LocaleKeys.ApplyNow),
             onPressed: () {},
             color: AppColors.white,
-            textStyle: const TextStyle(color: AppColors.black, fontSize: 18),
+            textStyle: const TextStyle(color: AppColors.black, fontSize: 15),
           ),
           const Spacer(),
           const Padding(

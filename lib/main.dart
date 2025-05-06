@@ -15,13 +15,14 @@ import 'core/utils/routes/app_routes.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppStarter.init();
-
+  await EasyLocalization.ensureInitialized();
   Bloc.observer = BlocObserverService(getIt<Logger>());
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale(Constants.ar), Locale(Constants.en)],
       path: Constants.assetsTranslations,
       startLocale: AppStarter.startLocale ?? const Locale(Constants.en),
+
       fallbackLocale: const Locale(Constants.en),
       child: const MyApp(),
     ),
@@ -52,6 +53,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
-
