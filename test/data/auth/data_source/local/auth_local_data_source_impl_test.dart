@@ -14,6 +14,12 @@ void main() {
   late MockFlutterSecureStorage mockFlutterSecureStorage;
   late MockSharedPreferences mockSharedPreferences;
 
+  // Test constants
+  const testTokenKey = Constants.token;
+  const testRememberMeKey = Constants.isRememberMe;
+  const testTokenValue = 'test_auth_token';
+  const emptyString = '';
+
   setUp(() {
     mockFlutterSecureStorage = MockFlutterSecureStorage();
     mockSharedPreferences = MockSharedPreferences();
@@ -23,275 +29,235 @@ void main() {
     );
   });
 
-  group('AuthLocalDataSourceImpl', () {
-    group('saveToken', () {
-      test(
-        'should call write method of FlutterSecureStorage with correct arguments',
-        () async {
-          // Arrange
-          const key = Constants.token;
-          const value = 'test_token';
-          when(
-            mockFlutterSecureStorage.write(key: key, value: value),
-          ).thenAnswer((_) async {});
-
-          // Act
-          // Assert
-          expect(
-            () => authLocalDataSourceImpl.saveToken(key, value),
-            returnsNormally,
-          );
-        },
-      );
-
-      test(
-        'should throw Exception when write method of FlutterSecureStorage fails',
-        () async {
-          // Arrange
-          const key = Constants.token;
-          const value = 'test_token';
-          when(
-            mockFlutterSecureStorage.write(key: key, value: value),
-          ).thenThrow(Exception('Failed to write'));
-
-          // Act
-          // Assert
-          expect(
-            () => authLocalDataSourceImpl.saveToken(key, value),
-            throwsA(isA<Exception>()),
-          );
-        },
-      );
-    });
-
-    group('getToken', () {
-      test(
-        'should call read method of FlutterSecureStorage with correct arguments',
-        () async {
-          // Arrange
-          const key = Constants.token;
-          const value = 'test_token';
-          when(
-            mockFlutterSecureStorage.read(key: key),
-          ).thenAnswer((_) async => value);
-
-          // Act
-          final result = await authLocalDataSourceImpl.getToken(key);
-
-          // Assert
-          expect(result, value);
-        },
-      );
-
-      test(
-        'should return null when read method of FlutterSecureStorage returns null',
-        () async {
-          // Arrange
-          const key = Constants.token;
-          const value = null;
-          when(
-            mockFlutterSecureStorage.read(key: key),
-          ).thenAnswer((_) async => value);
-
-          // Act
-          final result = await authLocalDataSourceImpl.getToken(key);
-
-          // Assert
-          expect(result, '');
-        },
-      );
-
-      test(
-        'should throw Exception when read method of FlutterSecureStorage fails',
-        () async {
-          // Arrange
-          const key = Constants.token;
-          when(
-            mockFlutterSecureStorage.read(key: key),
-          ).thenThrow(Exception('Failed to read'));
-
-          // Act
-          // Assert
-          expect(
-            () => authLocalDataSourceImpl.getToken(key),
-            throwsA(isA<Exception>()),
-          );
-        },
-      );
-    });
-
-    group('deleteToken', () {
-      test(
-        'should call delete method of FlutterSecureStorage with correct arguments',
-        () async {
-          // Arrange
-          const key = Constants.token;
-          when(
-            mockFlutterSecureStorage.delete(key: key),
-          ).thenAnswer((_) async {});
-
-          // Act
-          // Assert
-          expect(
-            () => authLocalDataSourceImpl.deleteToken(key),
-            returnsNormally,
-          );
-        },
-      );
-
-      test(
-        'should throw Exception when delete method of FlutterSecureStorage fails',
-        () async {
-          // Arrange
-          const key = Constants.token;
-          when(
-            mockFlutterSecureStorage.delete(key: key),
-          ).thenThrow(Exception('Failed to delete'));
-
-          // Act
-          // Assert
-          expect(
-            () => authLocalDataSourceImpl.deleteToken(key),
-            throwsA(isA<Exception>()),
-          );
-        },
-      );
-    });
-
-    group('clearAll', () {
-      test('should call deleteAll method of FlutterSecureStorage', () async {
+  group('Token Operations', () {
+    test(
+      'saveToken should call secure storage with correct parameters and handle success',
+      () async {
         // Arrange
-        when(mockFlutterSecureStorage.deleteAll()).thenAnswer((_) async {});
+        when(
+          mockFlutterSecureStorage.write(
+            key: anyNamed('key'),
+            value: anyNamed('value'),
+          ),
+        ).thenAnswer((_) => Future.value());
 
         // Act
+        await authLocalDataSourceImpl.saveToken(testTokenKey, testTokenValue);
+
         // Assert
-        expect(() => authLocalDataSourceImpl.clearAll(), returnsNormally);
-      });
+        verify(
+          mockFlutterSecureStorage.write(
+            key: testTokenKey,
+            value: testTokenValue,
+          ),
+        ).called(1);
+      },
+    );
 
-      test(
-        'should throw Exception when deleteAll method of FlutterSecureStorage fails',
-        () async {
-          // Arrange
-          when(
-            mockFlutterSecureStorage.deleteAll(),
-          ).thenThrow(Exception('Failed to delete all'));
+    test('saveToken should propagate storage exceptions', () async {
+      // Arrange
+      const errorMessage = 'Secure storage write error';
+      when(
+        mockFlutterSecureStorage.write(
+          key: anyNamed('key'),
+          value: anyNamed('value'),
+        ),
+      ).thenThrow(Exception(errorMessage));
 
-          // Act
-          // Assert
-          expect(
-            () => authLocalDataSourceImpl.clearAll(),
-            throwsA(isA<Exception>()),
-          );
-        },
+      // Act & Assert
+      expect(
+        () => authLocalDataSourceImpl.saveToken(testTokenKey, testTokenValue),
+        throwsA(isA<Exception>()),
+      );
+      verify(
+        mockFlutterSecureStorage.write(
+          key: testTokenKey,
+          value: testTokenValue,
+        ),
+      ).called(1);
+    });
+
+    test('getToken should return stored token when available', () async {
+      // Arrange
+      when(
+        mockFlutterSecureStorage.read(key: anyNamed('key')),
+      ).thenAnswer((_) => Future.value(testTokenValue));
+
+      // Act
+      final result = await authLocalDataSourceImpl.getToken(testTokenKey);
+
+      // Assert
+      expect(result, testTokenValue);
+      verify(mockFlutterSecureStorage.read(key: testTokenKey)).called(1);
+    });
+
+    test(
+      'getToken should return empty string when token is not available',
+      () async {
+        // Arrange
+        when(
+          mockFlutterSecureStorage.read(key: anyNamed('key')),
+        ).thenAnswer((_) => Future.value(null));
+
+        // Act
+        final result = await authLocalDataSourceImpl.getToken(testTokenKey);
+
+        // Assert
+        expect(result, emptyString);
+        verify(mockFlutterSecureStorage.read(key: testTokenKey)).called(1);
+      },
+    );
+
+    test('deleteToken should remove token from secure storage', () async {
+      // Arrange
+      when(
+        mockFlutterSecureStorage.delete(key: anyNamed('key')),
+      ).thenAnswer((_) => Future.value());
+
+      // Act
+      await authLocalDataSourceImpl.deleteToken(testTokenKey);
+
+      // Assert
+      verify(mockFlutterSecureStorage.delete(key: testTokenKey)).called(1);
+    });
+
+    test('clearAll should remove all data from secure storage', () async {
+      // Arrange
+      when(
+        mockFlutterSecureStorage.deleteAll(),
+      ).thenAnswer((_) => Future.value());
+
+      // Act
+      await authLocalDataSourceImpl.clearAll();
+
+      // Assert
+      verify(mockFlutterSecureStorage.deleteAll()).called(1);
+    });
+  });
+
+  group('Remember Me Operations', () {
+    test(
+      'setRememberMe should store boolean value in shared preferences',
+      () async {
+        // Arrange
+        when(
+          mockSharedPreferences.setBool(any, any),
+        ).thenAnswer((_) => Future.value(true));
+
+        // Act
+        await authLocalDataSourceImpl.setRememberMe(true);
+        await authLocalDataSourceImpl.setRememberMe(false);
+
+        // Assert
+        verifyInOrder([
+          mockSharedPreferences.setBool(testRememberMeKey, true),
+          mockSharedPreferences.setBool(testRememberMeKey, false),
+        ]);
+      },
+    );
+
+    test(
+      'isRememberMe should return true when enabled in preferences',
+      () async {
+        // Arrange
+        when(mockSharedPreferences.getBool(testRememberMeKey)).thenReturn(true);
+
+        // Act
+        final result = await authLocalDataSourceImpl.isRememberMe();
+
+        // Assert
+        expect(result, isTrue);
+        verify(mockSharedPreferences.getBool(testRememberMeKey)).called(1);
+      },
+    );
+
+    test(
+      'isRememberMe should return false when disabled in preferences',
+      () async {
+        // Arrange
+        when(
+          mockSharedPreferences.getBool(testRememberMeKey),
+        ).thenReturn(false);
+
+        // Act
+        final result = await authLocalDataSourceImpl.isRememberMe();
+
+        // Assert
+        expect(result, isFalse);
+        verify(mockSharedPreferences.getBool(testRememberMeKey)).called(1);
+      },
+    );
+
+    test(
+      'isRememberMe should return false when preference value is null',
+      () async {
+        // Arrange
+        when(mockSharedPreferences.getBool(testRememberMeKey)).thenReturn(null);
+
+        // Act
+        final result = await authLocalDataSourceImpl.isRememberMe();
+
+        // Assert
+        expect(result, isFalse);
+        verify(mockSharedPreferences.getBool(testRememberMeKey)).called(1);
+      },
+    );
+  });
+
+  group('Error Handling', () {
+    test('should propagate secure storage read errors', () async {
+      // Arrange
+      const errorMessage = 'Secure storage read error';
+      when(
+        mockFlutterSecureStorage.read(key: anyNamed('key')),
+      ).thenThrow(Exception(errorMessage));
+
+      // Act & Assert
+      expect(
+        () => authLocalDataSourceImpl.getToken(testTokenKey),
+        throwsA(isA<Exception>()),
       );
     });
 
-    group('RememberMe', () {
-      test(
-        'should call setBool method of SharedPreferences and save true',
-        () async {
-          // Arrange
-          const key = Constants.isRememberMe;
-          const value = true;
-          when(
-            mockSharedPreferences.setBool(key, value),
-          ).thenAnswer((_) async => true);
+    test('should propagate secure storage delete errors', () async {
+      // Arrange
+      const errorMessage = 'Secure storage delete error';
+      when(
+        mockFlutterSecureStorage.delete(key: anyNamed('key')),
+      ).thenThrow(Exception(errorMessage));
 
-          // Act
-          // Assert
-          expect(
-            () => authLocalDataSourceImpl.setRememberMe(value),
-            returnsNormally,
-          );
-        },
+      // Act & Assert
+      expect(
+        () => authLocalDataSourceImpl.deleteToken(testTokenKey),
+        throwsA(isA<Exception>()),
       );
+    });
 
-      test(
-        'should call getBool method of SharedPreferences and return true',
-        () async {
-          // Arrange
-          const key = Constants.isRememberMe;
-          const value = true;
-          when(mockSharedPreferences.getBool(key)).thenReturn(value);
+    test('should propagate shared preferences setBool errors', () async {
+      // Arrange
+      const errorMessage = 'Shared preferences setBool error';
+      when(
+        mockSharedPreferences.setBool(any, any),
+      ).thenThrow(Exception(errorMessage));
 
-          // Act
-          final result = await authLocalDataSourceImpl.isRememberMe();
-
-          // Assert
-          expect(result, value);
-        },
+      // Act & Assert
+      expect(
+        () => authLocalDataSourceImpl.setRememberMe(true),
+        throwsA(isA<Exception>()),
       );
+    });
 
-      test(
-        'should call setBool method of SharedPreferences and return false',
-        () async {
-          // Arrange
-          const key = Constants.isRememberMe;
-          const value = false;
-          when(
-            mockSharedPreferences.setBool(key, value),
-          ).thenAnswer((_) async => value);
+    test('should propagate shared preferences getBool errors', () async {
+      // Arrange
+      const errorMessage = 'Shared preferences getBool error';
+      when(
+        mockSharedPreferences.getBool(any),
+      ).thenThrow(Exception(errorMessage));
 
-          // Act
-          // Assert
-          expect(
-            () => authLocalDataSourceImpl.setRememberMe(value),
-            returnsNormally,
-          );
-        },
-      );
-
-      test(
-        'should call getBool method of SharedPreferences and return false',
-        () async {
-          // Arrange
-          const key = Constants.isRememberMe;
-          const value = false;
-          when(mockSharedPreferences.getBool(key)).thenReturn(value);
-
-          // Act
-          final result = await authLocalDataSourceImpl.isRememberMe();
-
-          // Assert
-          expect(result, value);
-        },
-      );
-
-      test(
-        'should throw Exception when setBool method of SharedPreferences fails',
-        () async {
-          // Arrange
-          const key = Constants.isRememberMe;
-          const value = true;
-          when(
-            mockSharedPreferences.setBool(key, value),
-          ).thenThrow(Exception('Failed to set bool'));
-
-          // Act
-          // Assert
-          expect(
-            () => authLocalDataSourceImpl.setRememberMe(value),
-            throwsA(isA<Exception>()),
-          );
-        },
-      );
-
-      test(
-        'should throw Exception when getBool method of SharedPreferences fails',
-        () async {
-          // Arrange
-          const key = Constants.isRememberMe;
-          when(
-            mockSharedPreferences.getBool(key),
-          ).thenThrow(Exception('Failed to get bool'));
-
-          // Act
-          // Assert
-          expect(
-            () => authLocalDataSourceImpl.isRememberMe(),
-            throwsA(isA<Exception>()),
-          );
-        },
+      // Act & Assert
+      expect(
+        () => authLocalDataSourceImpl.isRememberMe(),
+        throwsA(isA<Exception>()),
       );
     });
   });

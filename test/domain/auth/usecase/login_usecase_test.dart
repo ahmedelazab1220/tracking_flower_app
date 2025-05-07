@@ -1,7 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('TODO: Implement tests for login_usecase.dart', () {
-    // TODO: Implement test
-  });
+  test('TODO: Implement tests for login_usecase.dart', () {});
 }
