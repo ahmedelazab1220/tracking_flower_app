@@ -13,7 +13,13 @@ class AppRoutes {
   static const String emailVerificationRoute = '/email-verification';
   static Map<String, Widget Function(BuildContext)> routes = {
     forgetPasswordRoute: (context) => const ForgetPasswordScreen(),
-    resetPasswordRoute: (context) => const ResetPasswordScreen(),
-    emailVerificationRoute: (context) => const EmailVerificationScreen(),
+    resetPasswordRoute: (context) {
+      final email = ModalRoute.of(context)?.settings.arguments as String;
+      return ResetPasswordScreen(email: email);
+    },
+    emailVerificationRoute: (context) {
+      final email = ModalRoute.of(context)?.settings.arguments as String;
+      return EmailVerificationScreen(email: email);
+    },
   };
 }

@@ -13,7 +13,8 @@ import '../view_model/reset_password/reset_password_cubit.dart';
 import '../view_model/reset_password/reset_password_state.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
-  const ResetPasswordScreen({super.key});
+  final String email;
+  const ResetPasswordScreen({super.key, required this.email});
 
   @override
   State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
@@ -24,8 +25,6 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final email = ModalRoute.of(context)?.settings.arguments as String;
-
     return Scaffold(
       appBar: AppBar(title: Text(LocaleKeys.Password.tr())),
       body: BlocProvider(
@@ -57,7 +56,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   title: LocaleKeys.ResetPassword.tr(),
                   subtitle: LocaleKeys.PasswordRequirements.tr(),
                 ),
-                ResetPasswordForm(email: email),
+                ResetPasswordForm(email: widget.email),
               ],
             ),
           ),

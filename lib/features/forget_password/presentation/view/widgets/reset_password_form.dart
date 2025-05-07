@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../view_model/reset_password/reset_password_cubit.dart';
@@ -35,7 +34,7 @@ class ResetPasswordForm extends StatelessWidget {
                     ),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
               ),
-              SizedBox(height: 24.h),
+              const SizedBox(height: 24),
               TextFormField(
                 controller: resetPasswordCubit.confirmPasswordController,
                 decoration: InputDecoration(
@@ -52,7 +51,7 @@ class ResetPasswordForm extends StatelessWidget {
               ),
               const SizedBox(height: 48),
               SizedBox(
-                height: 48.h,
+                height: 48,
                 child: ElevatedButton(
                   onPressed: () {
                     if (resetPasswordCubit.formKey.currentState?.validate() ??

@@ -17,7 +17,7 @@ class ResetPasswordState extends Equatable {
 
 sealed class ResetPasswordAction {}
 
-class ResetPasswordRequestAction extends ResetPasswordAction {
+final class ResetPasswordRequestAction extends ResetPasswordAction {
   final String email;
 
   ResetPasswordRequestAction(this.email);

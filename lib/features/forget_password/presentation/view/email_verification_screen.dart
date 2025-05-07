@@ -14,7 +14,8 @@ import '../view_model/email_verification/email_verification_cubit.dart';
 import '../view_model/email_verification/email_verification_state.dart';
 
 class EmailVerificationScreen extends StatefulWidget {
-  const EmailVerificationScreen({super.key});
+  final String email;
+  const EmailVerificationScreen({super.key, required this.email});
 
   @override
   State<EmailVerificationScreen> createState() =>
@@ -27,8 +28,6 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final email = ModalRoute.of(context)?.settings.arguments as String;
-
     return Scaffold(
       appBar: AppBar(title: Text(LocaleKeys.Password.tr())),
       body: BlocProvider(
@@ -39,9 +38,10 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
               AppDialogs.showLoadingDialog(context);
             } else if (state.baseState is BaseSuccessState) {
               AppDialogs.hideLoading(context);
-              Navigator.of(
-                context,
-              ).pushNamed(AppRoutes.resetPasswordRoute, arguments: email);
+              Navigator.of(context).pushNamed(
+                AppRoutes.resetPasswordRoute,
+                arguments: widget.email,
+              );
             } else if (state.baseState is BaseErrorState) {
               AppDialogs.hideLoading(context);
               AppDialogs.showFailureDialog(
@@ -62,7 +62,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                           .PleaseEnterYourCodeThatSendToYourEmailAddress.tr(),
                 ),
                 const VerificationCodeInput(),
-                ResendCode(email: email),
+                ResendCode(email: widget.email),
               ],
             ),
           ),

@@ -1,11 +1,10 @@
+import 'dart:ui' as ui;
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinput/pinput.dart';
-import 'dart:ui' as ui;
-
 import '../../../../../../core/base/base_state.dart';
 import '../../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../../../../core/assets/app_colors.dart';
@@ -44,20 +43,20 @@ class VerificationCodeInput extends StatelessWidget {
                 forceErrorState: (state.baseState is BaseErrorState),
                 errorText: LocaleKeys.InvalidCode.tr(),
                 defaultPinTheme: PinTheme(
-                  width: 74.w,
-                  height: 68.h,
+                  width: 74,
+                  height: 68,
                   textStyle: const TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.w500,
                   ),
                   decoration: BoxDecoration(
                     color: AppColors.white[AppColors.colorCode60],
-                    borderRadius: BorderRadius.circular(10).r,
+                    borderRadius: BorderRadius.circular(10),
                   ),
                 ),
                 errorPinTheme: PinTheme(
-                  width: 74.w,
-                  height: 68.h,
+                  width: 74,
+                  height: 68,
                   textStyle: const TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.w500,
