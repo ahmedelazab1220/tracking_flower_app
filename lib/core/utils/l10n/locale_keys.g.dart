@@ -18,6 +18,7 @@ abstract class LocaleKeys {
       'PleaseEnterYourEmailAssociatedToYourAccount';
   static const Confirm = 'Confirm';
   static const ThisEmailIsNotValid = 'ThisEmailIsNotValid';
+  static const InvalidPassword = 'InvalidPassword';
   static const EmailVerification = 'EmailVerification';
   static const PleaseEnterYourCodeThatSendToYourEmailAddress =
       'PleaseEnterYourCodeThatSendToYourEmailAddress';
@@ -129,4 +130,6 @@ abstract class LocaleKeys {
   static const TakeAPhoto = 'TakeAPhoto';
   static const ChooseFromGallery = 'ChooseFromGallery';
   static const Loading = 'Loading';
+  static const EmailCannotBeEmpty = 'EmailCannotBeEmpty';
+  static const PasswordCannotBeEmpty = 'PasswordCannotBeEmpty';
 }
