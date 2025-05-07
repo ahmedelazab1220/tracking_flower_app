@@ -11,7 +11,7 @@ class Validator {
     } else if (!RegExp(
       r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
     ).hasMatch(input)) {
-      return LocaleKeys.EnterAValidEmail.tr();
+      return LocaleKeys.ThisEmailIsNotValid.tr();
     }
     return null;
   }

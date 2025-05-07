@@ -18,6 +18,7 @@ abstract class LocaleKeys {
       'PleaseEnterYourEmailAssociatedToYourAccount';
   static const Confirm = 'Confirm';
   static const ThisEmailIsNotValid = 'ThisEmailIsNotValid';
+  static const InvalidPassword = 'InvalidPassword';
   static const EmailVerification = 'EmailVerification';
   static const PleaseEnterYourCodeThatSendToYourEmailAddress =
       'PleaseEnterYourCodeThatSendToYourEmailAddress';
@@ -129,17 +130,6 @@ abstract class LocaleKeys {
   static const TakeAPhoto = 'TakeAPhoto';
   static const ChooseFromGallery = 'ChooseFromGallery';
   static const Loading = 'Loading';
-  static const EnterYourNewPassword = 'EnterYourNewPassword';
-  static const ResendIn = 'ResendIn';
-  static const DidNotReceiveTheCode = 'DidNotReceiveTheCode';
-  static const PasswordRequirements = 'PasswordRequirements';
-  static const EnterAValidEmail = 'EnterAValidEmail';
   static const EmailCannotBeEmpty = 'EmailCannotBeEmpty';
   static const PasswordCannotBeEmpty = 'PasswordCannotBeEmpty';
-  static const ConfirmPasswordMustMatch = 'ConfirmPasswordMustMatch';
-  static const NameCannotBeEmpty = 'NameCannotBeEmpty';
-  static const InvalidName = 'InvalidName';
-  static const PhoneNumberCannotBeEmpty = 'PhoneNumberCannotBeEmpty';
-  static const InvalidPhoneNumber = 'InvalidPhoneNumber';
-  static const InvalidPassword = 'InvalidPassword';
 }
