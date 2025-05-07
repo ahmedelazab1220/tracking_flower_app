@@ -11,14 +11,14 @@ abstract class AuthRemoteDataSource {
   Future<LoginResponseDto> login(LoginRequestDto request);
 
   Future<ForgetPasswordResponseDto> forgetPassword(
-      ForgetPasswordRequestDto request,
-      );
+    ForgetPasswordRequestDto request,
+  );
 
   Future<ResetPasswordResponseDto> resetPassword(
-      ResetPasswordRequestDto request,
-      );
+    ResetPasswordRequestDto request,
+  );
 
   Future<VerifyResetCodeResponseDto> verifyResetCode(
-      VerifyResetCodeRequestDto request,
-      );
+    VerifyResetCodeRequestDto request,
+  );
 }
