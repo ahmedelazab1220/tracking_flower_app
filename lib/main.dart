@@ -10,12 +10,11 @@ import 'core/utils/bloc_observer/bloc_observer_service.dart';
 import 'core/utils/constants.dart';
 import 'core/utils/di/di.dart';
 import 'core/utils/routes/app_routes.dart';
-// import 'features/onBoarding/presentation/view/on_boarding_screen.dart';
+import 'features/onBoarding/presentation/view/on_boarding_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppStarter.init();
-  await EasyLocalization.ensureInitialized();
   Bloc.observer = BlocObserverService(getIt<Logger>());
   runApp(
     EasyLocalization(
@@ -47,18 +46,9 @@ class MyApp extends StatelessWidget {
           title: 'Tracking Flower App',
           theme: AppTheme.appTheme,
           routes: AppRoutes.routes,
-          home: const SplashScreen(),
+          home: const OnBoardingScreen(),
         );
       },
     );
-  }
-}
-
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    throw UnimplementedError();
   }
 }
