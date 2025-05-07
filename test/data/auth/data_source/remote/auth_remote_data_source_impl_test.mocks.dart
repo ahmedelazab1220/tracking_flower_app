@@ -29,13 +29,8 @@ import 'package:tracking_flower_app/data/auth/models/login_response_dto.dart'
 
 class _FakeLoginResponseDto_0 extends _i1.SmartFake
     implements _i2.LoginResponseDto {
-  _FakeLoginResponseDto_0(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
+  _FakeLoginResponseDto_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 /// A class which mocks [AuthRetrofitClient].
@@ -50,17 +45,13 @@ class MockAuthRetrofitClient extends _i1.Mock
   @override
   _i4.Future<_i2.LoginResponseDto> login(_i5.LoginRequestDto? request) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #login,
-          [request],
-        ),
-        returnValue:
-            _i4.Future<_i2.LoginResponseDto>.value(_FakeLoginResponseDto_0(
-          this,
-          Invocation.method(
-            #login,
-            [request],
-          ),
-        )),
-      ) as _i4.Future<_i2.LoginResponseDto>);
+            Invocation.method(#login, [request]),
+            returnValue: _i4.Future<_i2.LoginResponseDto>.value(
+              _FakeLoginResponseDto_0(
+                this,
+                Invocation.method(#login, [request]),
+              ),
+            ),
+          )
+          as _i4.Future<_i2.LoginResponseDto>);
 }
