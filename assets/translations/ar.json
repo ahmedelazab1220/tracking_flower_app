@@ -13,6 +13,7 @@
     "PleaseEnterYourEmailAssociatedToYourAccount": "يرجى إدخال البريد الإلكتروني المرتبط بحسابك",
     "Confirm": "تأكيد",
     "ThisEmailIsNotValid": "هذا البريد الإلكتروني غير صالح",
+    "InvalidPassword": "كلمة المرور غير صحيحة",
     "EmailVerification": "التحقق من البريد الإلكتروني",
     "PleaseEnterYourCodeThatSendToYourEmailAddress": "يرجى إدخال الرمز الذي أُرسل إلى بريدك الإلكتروني",
     "Resend": "إعادة الإرسال",
@@ -118,5 +119,7 @@
     "English": "الإنجليزية",
     "TakeAPhoto": "التقط صورة",
     "ChooseFromGallery": "اختر من المعرض",
-    "Loading": "جار التحميل..."
+    "Loading": "جار التحميل...",
+    "EmailCannotBeEmpty": "البريد الإلكتروني لا يمكن أن يكون فارغًا",
+    "PasswordCannotBeEmpty": "كلمة المرور لا يمكن أن تكون فارغة"
 }

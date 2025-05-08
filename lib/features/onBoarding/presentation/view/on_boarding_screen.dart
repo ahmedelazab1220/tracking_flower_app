@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,12 +7,18 @@ import '../../../../core/assets/app_colors.dart';
 import '../../../../core/assets/app_images.dart';
 import '../../../../core/utils/l10n/locale_keys.g.dart';
 
+=======
+import 'package:flutter/material.dart';
+import 'package:tracking_flower_app/core/utils/routes/app_routes.dart';
+
+>>>>>>> 8d2392998ccf8415081b223fbf2bf7a1d64e388c
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+<<<<<<< HEAD
       body: Padding(
         padding: EdgeInsets.all(8.0.w),
         child: Column(
@@ -69,6 +76,20 @@ class OnBoardingScreen extends StatelessWidget {
             ),
           ],
         ),
+=======
+      appBar: AppBar(title: const Text('Onboarding')),
+      body: Column(
+        children: [
+          const Center(child: Text('Welcome to the Onboarding Screen!')),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, AppRoutes.loginRoute);
+            },
+            child: const Text("Login"),
+          ),
+        ],
+>>>>>>> 8d2392998ccf8415081b223fbf2bf7a1d64e388c
       ),
     );
   }

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:logger/logger.dart';
 
+import 'core/functions/initial_route_function.dart';
 import 'core/theme/app_theme.dart';
 import 'core/utils/app_starter.dart';
 import 'core/utils/bloc_observer/bloc_observer_service.dart';
@@ -28,8 +29,21 @@ Future<void> main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  late final RouteInitializer routeInitializer;
+
+  @override
+  void didChangeDependencies() {
+    routeInitializer = getIt<RouteInitializer>();
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +60,11 @@ class MyApp extends StatelessWidget {
           title: 'Tracking Flower App',
           theme: AppTheme.appTheme,
           routes: AppRoutes.routes,
+<<<<<<< HEAD
           home: const OnBoardingScreen(),
+=======
+          initialRoute: routeInitializer.computeInitialRoute(),
+>>>>>>> 8d2392998ccf8415081b223fbf2bf7a1d64e388c
         );
       },
     );
