@@ -11,7 +11,6 @@ import 'core/utils/bloc_observer/bloc_observer_service.dart';
 import 'core/utils/constants.dart';
 import 'core/utils/di/di.dart';
 import 'core/utils/routes/app_routes.dart';
-import 'features/onBoarding/presentation/view/on_boarding_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,9 +39,9 @@ class _MyAppState extends State<MyApp> {
   late final RouteInitializer routeInitializer;
 
   @override
-  void didChangeDependencies() {
+  void initState() {
+    super.initState();
     routeInitializer = getIt<RouteInitializer>();
-    super.didChangeDependencies();
   }
 
   @override
@@ -60,11 +59,7 @@ class _MyAppState extends State<MyApp> {
           title: 'Tracking Flower App',
           theme: AppTheme.appTheme,
           routes: AppRoutes.routes,
-<<<<<<< HEAD
-          home: const OnBoardingScreen(),
-=======
           initialRoute: routeInitializer.computeInitialRoute(),
->>>>>>> 8d2392998ccf8415081b223fbf2bf7a1d64e388c
         );
       },
     );

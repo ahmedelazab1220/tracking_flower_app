@@ -121,5 +121,6 @@
     "ChooseFromGallery": "اختر من المعرض",
     "Loading": "جار التحميل...",
     "EmailCannotBeEmpty": "البريد الإلكتروني لا يمكن أن يكون فارغًا",
-    "PasswordCannotBeEmpty": "كلمة المرور لا يمكن أن تكون فارغة"
+    "PasswordCannotBeEmpty": "كلمة المرور لا يمكن أن تكون فارغة",
+    "Version": "v 6.3.0 - (446)"
 }

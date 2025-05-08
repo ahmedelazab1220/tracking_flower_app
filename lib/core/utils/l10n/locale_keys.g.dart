@@ -2,7 +2,7 @@
 
 // ignore_for_file: constant_identifier_names
 
-abstract class LocaleKeys {
+abstract class  LocaleKeys {
   static const Login = 'Login';
   static const ApplyNow = 'ApplyNow';
   static const WelcomeToFloweryRiderApp = 'WelcomeToFloweryRiderApp';
@@ -14,27 +14,23 @@ abstract class LocaleKeys {
   static const RememberMe = 'RememberMe';
   static const Continue = 'Continue';
   static const ForgotPassword = 'ForgotPassword';
-  static const PleaseEnterYourEmailAssociatedToYourAccount =
-      'PleaseEnterYourEmailAssociatedToYourAccount';
+  static const PleaseEnterYourEmailAssociatedToYourAccount = 'PleaseEnterYourEmailAssociatedToYourAccount';
   static const Confirm = 'Confirm';
   static const ThisEmailIsNotValid = 'ThisEmailIsNotValid';
   static const InvalidPassword = 'InvalidPassword';
   static const EmailVerification = 'EmailVerification';
-  static const PleaseEnterYourCodeThatSendToYourEmailAddress =
-      'PleaseEnterYourCodeThatSendToYourEmailAddress';
+  static const PleaseEnterYourCodeThatSendToYourEmailAddress = 'PleaseEnterYourCodeThatSendToYourEmailAddress';
   static const Resend = 'Resend';
   static const DidnotReceiveCode = 'DidnotReceiveCode';
   static const InvalidCode = 'InvalidCode';
   static const ResetPassword = 'ResetPassword';
-  static const PasswordMustNotBeEmptyAndMustContainSixCharactersWithUpperCaseLetterAndOneNumberAtLeast =
-      'PasswordMustNotBeEmptyAndMustContainSixCharactersWithUpperCaseLetterAndOneNumberAtLeast';
+  static const PasswordMustNotBeEmptyAndMustContainSixCharactersWithUpperCaseLetterAndOneNumberAtLeast = 'PasswordMustNotBeEmptyAndMustContainSixCharactersWithUpperCaseLetterAndOneNumberAtLeast';
   static const NewPassword = 'NewPassword';
   static const ConfirmPassword = 'ConfirmPassword';
   static const PasswordDoesNotMatch = 'PasswordDoesNotMatch';
   static const PasswordChangedSuccessfully = 'PasswordChangedSuccessfully';
   static const Apply = 'Apply';
-  static const YouWantToBeADeliveryManJoinOurTeam =
-      'YouWantToBeADeliveryManJoinOurTeam';
+  static const YouWantToBeADeliveryManJoinOurTeam = 'YouWantToBeADeliveryManJoinOurTeam';
   static const Welcome = 'Welcome';
   static const Country = 'Country';
   static const FirstLegalName = 'FirstLegalName';
@@ -53,10 +49,8 @@ abstract class LocaleKeys {
   static const Gender = 'Gender';
   static const Male = 'Male';
   static const Female = 'Female';
-  static const YourApplicationHasBeenSubmitted =
-      'YourApplicationHasBeenSubmitted';
-  static const ThankYouForProvidingYourApplicationWeWillReviewYourApplicationAndWillGetBackToYouSoon =
-      'ThankYouForProvidingYourApplicationWeWillReviewYourApplicationAndWillGetBackToYouSoon';
+  static const YourApplicationHasBeenSubmitted = 'YourApplicationHasBeenSubmitted';
+  static const ThankYouForProvidingYourApplicationWeWillReviewYourApplicationAndWillGetBackToYouSoon = 'ThankYouForProvidingYourApplicationWeWillReviewYourApplicationAndWillGetBackToYouSoon';
   static const Profile = 'Profile';
   static const Home = 'Home';
   static const Orders = 'Orders';
@@ -132,4 +126,6 @@ abstract class LocaleKeys {
   static const Loading = 'Loading';
   static const EmailCannotBeEmpty = 'EmailCannotBeEmpty';
   static const PasswordCannotBeEmpty = 'PasswordCannotBeEmpty';
+  static const Version = 'Version';
+
 }

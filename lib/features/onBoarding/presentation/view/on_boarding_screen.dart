@@ -1,62 +1,41 @@
-<<<<<<< HEAD
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/assets/app_colors.dart';
 import '../../../../core/assets/app_images.dart';
 import '../../../../core/utils/l10n/locale_keys.g.dart';
 
-=======
-import 'package:flutter/material.dart';
-import 'package:tracking_flower_app/core/utils/routes/app_routes.dart';
-
->>>>>>> 8d2392998ccf8415081b223fbf2bf7a1d64e388c
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-<<<<<<< HEAD
       body: Padding(
-        padding: EdgeInsets.all(8.0.w),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Center(
-              child: Padding(
-                padding: EdgeInsets.all(8.0.w),
-                child: Image.asset(AppImages.onBoardingLogo, fit: BoxFit.cover),
-              ),
+            Expanded(
+              flex: 4,
+              child: Image.asset(AppImages.onBoardingLogo, fit: BoxFit.cover),
             ),
             Text(
               tr(LocaleKeys.WelcomeToFloweryRiderApp),
               style: Theme.of(
                 context,
-              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+              ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w500),
               textAlign: TextAlign.start,
             ),
-            SizedBox(height: 4.h),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(backgroundColor: AppColors.pink),
-              child: Text(
-                tr(LocaleKeys.Login),
-                style: Theme.of(
-                  context,
-                ).textTheme.labelLarge?.copyWith(color: AppColors.white),
-              ),
-            ),
-            SizedBox(height: 3.h),
+            const SizedBox(height: 24),
+            ElevatedButton(onPressed: () {}, child: Text(tr(LocaleKeys.Login))),
+            const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(22.r),
-                  side: BorderSide(color: AppColors.black, width: 1.5.w),
-                ),
+                side: const BorderSide(color: AppColors.gray, width: 1.2),
               ),
               child: Text(
                 tr(LocaleKeys.ApplyNow),
@@ -64,32 +43,16 @@ class OnBoardingScreen extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            Padding(
-              padding: EdgeInsets.only(bottom: 18.0.w),
-              child: Center(
-                child: Text(
-                  'state.version',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
+            Center(
+              child: Text(
+                LocaleKeys.Version.tr(),
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodySmall,
               ),
             ),
+            const SizedBox(height: 50),
           ],
         ),
-=======
-      appBar: AppBar(title: const Text('Onboarding')),
-      body: Column(
-        children: [
-          const Center(child: Text('Welcome to the Onboarding Screen!')),
-          const SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamed(context, AppRoutes.loginRoute);
-            },
-            child: const Text("Login"),
-          ),
-        ],
->>>>>>> 8d2392998ccf8415081b223fbf2bf7a1d64e388c
       ),
     );
   }
