@@ -1,7 +1,7 @@
 {
   "Login": "Login",
   "ApplyNow": "Apply Now",
-  "WelcomeToFloweryRiderApp": "Welcome to Flowery rider app",
+  "WelcomeToFloweryRiderApp": "Welcome to\nFlowery rider app",
   "Email": "Email",
   "EnterYourEmail": "Enter your email",
   "Password": "Password",
@@ -121,5 +121,6 @@
   "ChooseFromGallery": "Choose from gallery",
   "Loading": "Loading...",
   "EmailCannotBeEmpty": "Email cannot be empty",
-  "PasswordCannotBeEmpty": "Password cannot be empty"
+  "PasswordCannotBeEmpty": "Password cannot be empty",
+  "Version": "v 6.3.0 - (446)"
 }

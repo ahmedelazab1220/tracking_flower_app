@@ -1,7 +1,7 @@
 {
     "Login": "تسجيل الدخول",
     "ApplyNow": "قدّم الآن",
-    "WelcomeToFloweryRiderApp": "مرحبًا بك في تطبيق فلاوري رايدر",
+    "WelcomeToFloweryRiderApp": "مرحبًا بك في/nتطبيق فلاوري رايدر",
     "Email": "البريد الإلكتروني",
     "EnterYourEmail": "أدخل بريدك الإلكتروني",
     "Password": "كلمة المرور",
@@ -121,5 +121,6 @@
     "ChooseFromGallery": "اختر من المعرض",
     "Loading": "جار التحميل...",
     "EmailCannotBeEmpty": "البريد الإلكتروني لا يمكن أن يكون فارغًا",
-    "PasswordCannotBeEmpty": "كلمة المرور لا يمكن أن تكون فارغة"
+    "PasswordCannotBeEmpty": "كلمة المرور لا يمكن أن تكون فارغة",
+    "Version": "v 6.3.0 - (446)"
 }

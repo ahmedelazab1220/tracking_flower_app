@@ -132,4 +132,5 @@ abstract class LocaleKeys {
   static const Loading = 'Loading';
   static const EmailCannotBeEmpty = 'EmailCannotBeEmpty';
   static const PasswordCannotBeEmpty = 'PasswordCannotBeEmpty';
+  static const Version = 'Version';
 }
