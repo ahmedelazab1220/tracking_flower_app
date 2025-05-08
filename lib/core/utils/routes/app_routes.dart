@@ -21,11 +21,15 @@ class AppRoutes {
     loginRoute: (context) => const LoginScreen(),
     forgetPasswordRoute: (context) => const ForgetPasswordScreen(),
     resetPasswordRoute: (context) {
-      final email = ModalRoute.of(context)?.settings.arguments as String;
+      final args =
+          ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
+      final email = args['email'];
       return ResetPasswordScreen(email: email);
     },
     emailVerificationRoute: (context) {
-      final email = ModalRoute.of(context)?.settings.arguments as String;
+      final args =
+          ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
+      final email = args['email'];
       return EmailVerificationScreen(email: email);
     },
   };

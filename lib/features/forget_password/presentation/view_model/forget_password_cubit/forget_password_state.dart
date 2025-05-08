@@ -17,3 +17,5 @@ class ForgetPasswordState extends Equatable {
 sealed class ForgetPasswordAction {}
 
 final class ForgetPasswordRequestAction extends ForgetPasswordAction {}
+
+final class FormDataChangedAction extends ForgetPasswordAction {}

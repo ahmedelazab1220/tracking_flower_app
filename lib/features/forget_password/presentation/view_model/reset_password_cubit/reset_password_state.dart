@@ -22,3 +22,5 @@ final class ResetPasswordRequestAction extends ResetPasswordAction {
 
   ResetPasswordRequestAction(this.email);
 }
+
+final class FormDataChangedAction extends ResetPasswordAction {}

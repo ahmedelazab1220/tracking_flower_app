@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/assets/app_colors.dart';
 
-class Header extends StatelessWidget {
+class SharedHeaderWidget extends StatelessWidget {
   final String title;
   final String subtitle;
 
-  const Header({super.key, required this.title, required this.subtitle});
+  const SharedHeaderWidget({
+    super.key,
+    required this.title,
+    required this.subtitle,
+  });
 
   @override
   Widget build(BuildContext context) {

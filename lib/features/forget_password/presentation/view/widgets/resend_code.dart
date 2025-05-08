@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../core/assets/app_colors.dart';
 import '../../../../../../core/utils/l10n/locale_keys.g.dart';
-import '../../view_model/email_verification/email_verification_cubit.dart';
-import '../../view_model/email_verification/email_verification_state.dart';
+import '../../view_model/email_verification_cubit/email_verification_cubit.dart';
+import '../../view_model/email_verification_cubit/email_verification_state.dart';
 
 class ResendCode extends StatelessWidget {
   final String email;
@@ -27,7 +27,9 @@ class ResendCode extends StatelessWidget {
           children: [
             Text(LocaleKeys.DidNotReceiveTheCode.tr()),
             TextButton(
-              onPressed: state.canResend ? () => onResend(context) : null,
+              onPressed: () {
+                if (state.canResend) onResend(context);
+              },
               child:
                   state.canResend
                       ? Text(

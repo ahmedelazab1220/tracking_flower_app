@@ -8,15 +8,15 @@ import 'package:pinput/pinput.dart';
 import '../../../../../../core/base/base_state.dart';
 import '../../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../../../../core/assets/app_colors.dart';
-import '../../view_model/email_verification/email_verification_cubit.dart';
-import '../../view_model/email_verification/email_verification_state.dart';
+import '../../view_model/email_verification_cubit/email_verification_cubit.dart';
+import '../../view_model/email_verification_cubit/email_verification_state.dart';
 
 class VerificationCodeInput extends StatelessWidget {
   const VerificationCodeInput({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final EmailVerificationCubit emailVerificationCubit =
+    final EmailVerificationCubit viewModel =
         context.read<EmailVerificationCubit>();
 
     return BlocBuilder<EmailVerificationCubit, EmailVerificationState>(
@@ -27,8 +27,8 @@ class VerificationCodeInput extends StatelessWidget {
               textDirection: ui.TextDirection.ltr,
               child: Pinput(
                 keyboardType: TextInputType.number,
-                controller: emailVerificationCubit.pinController,
-                key: emailVerificationCubit.formKey,
+                controller: viewModel.pinController,
+                key: viewModel.formKey,
                 inputFormatters: [
                   FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                 ],
@@ -36,9 +36,7 @@ class VerificationCodeInput extends StatelessWidget {
                 length: 6,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 onCompleted: (pin) {
-                  emailVerificationCubit.doIntent(
-                    EmailVerificationRequestAction(),
-                  );
+                  viewModel.doIntent(EmailVerificationRequestAction());
                 },
                 forceErrorState: (state.baseState is BaseErrorState),
                 errorText: LocaleKeys.InvalidCode.tr(),
