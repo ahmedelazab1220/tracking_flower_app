@@ -142,4 +142,5 @@ abstract class LocaleKeys {
   static const PhoneNumberCannotBeEmpty = 'PhoneNumberCannotBeEmpty';
   static const InvalidPhoneNumber = 'InvalidPhoneNumber';
   static const InvalidPassword = 'InvalidPassword';
+  static const Version = 'Version';
 }
