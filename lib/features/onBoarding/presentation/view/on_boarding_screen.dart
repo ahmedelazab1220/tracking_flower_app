@@ -12,59 +12,45 @@ class OnBoardingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Image.asset(AppImages.onBoardingLogo, fit: BoxFit.cover),
-              ),
+            Expanded(
+              flex: 4,
+              child: Image.asset(AppImages.onBoardingLogo, fit: BoxFit.cover),
             ),
             Text(
               tr(LocaleKeys.WelcomeToFloweryRiderApp),
-              style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w900,
-                color: AppColors.black,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w500),
               textAlign: TextAlign.start,
             ),
-            const SizedBox(height: 2),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(backgroundColor: AppColors.pink),
-              child: Text(
-                tr(LocaleKeys.Login),
-                style: const TextStyle(color: AppColors.white, fontSize: 15),
-              ),
-            ),
+            const SizedBox(height: 24),
+            ElevatedButton(onPressed: () {}, child: Text(tr(LocaleKeys.Login))),
+            const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(22),
-                  side: const BorderSide(color: AppColors.black, width: 1.5),
-                ),
+                side: const BorderSide(color: AppColors.gray, width: 1.2),
               ),
               child: Text(
                 tr(LocaleKeys.ApplyNow),
-                style: const TextStyle(color: AppColors.black, fontSize: 15),
+                style: Theme.of(context).textTheme.labelLarge,
               ),
             ),
             const Spacer(),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 18.0, left: 10),
-              child: Center(
-                child: Text(
-                  'Version 1.0.0 (2006)',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 12, color: AppColors.gray),
-                ),
+            Center(
+              child: Text(
+                LocaleKeys.Version.tr(),
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodySmall,
               ),
             ),
+            const SizedBox(height: 50),
           ],
         ),
       ),

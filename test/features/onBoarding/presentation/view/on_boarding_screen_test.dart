@@ -60,7 +60,7 @@ void main() {
         LocaleKeys.WelcomeToFloweryRiderApp,
         LocaleKeys.Login,
         LocaleKeys.ApplyNow,
-        //LocaleKeys.Version,
+        LocaleKeys.Version,
       ];
 
       for (final key in textKeys) {
@@ -99,10 +99,10 @@ void main() {
       expect(buttons[1].style?.side?.resolve({})?.width, greaterThan(1.0));
 
       // Verify version text is small
-      /*final versionText = tester.widget<Text>(
+      final versionText = tester.widget<Text>(
         find.text(LocaleKeys.Version.tr()),
       );
-      expect(versionText.style?.fontWeight, FontWeight.w400);*/
+      expect(versionText.style?.fontWeight, FontWeight.w400);
     });
 
     testWidgets('should have proper layout structure', (
