@@ -31,11 +31,13 @@ class EmailVerificationCubit extends Cubit<EmailVerificationState> {
   void doIntent(EmailVerificationAction action) {
     switch (action) {
       case EmailVerificationRequestAction():
-        _verifyResetCode();
-        break;
+        {
+          _verifyResetCode();
+        }
       case ResendEmailVerificationRequestAction():
-        _resendEmailVerification(action.email);
-        break;
+        {
+          _resendEmailVerification(action.email);
+        }
     }
   }
 

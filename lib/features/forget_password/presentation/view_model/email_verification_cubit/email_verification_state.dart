@@ -35,7 +35,7 @@ class EmailVerificationState extends Equatable {
 
 sealed class EmailVerificationAction {}
 
-class EmailVerificationRequestAction extends EmailVerificationAction {}
+final class EmailVerificationRequestAction extends EmailVerificationAction {}
 
 final class ResendEmailVerificationRequestAction
     extends EmailVerificationAction {

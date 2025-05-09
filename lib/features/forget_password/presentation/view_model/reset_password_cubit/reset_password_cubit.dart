@@ -20,12 +20,28 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
   final TextEditingController confirmPasswordController =
       TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  ValueNotifier<bool> valid = ValueNotifier<bool>(false);
 
   void doIntent(ResetPasswordAction action) {
     switch (action) {
       case ResetPasswordRequestAction():
-        _resetPassword(action.email);
-        break;
+        {
+          _resetPassword(action.email);
+        }
+      case FormDataChangedAction():
+        {
+          _validate();
+        }
+    }
+  }
+
+  void _validate() {
+    if (formKey.currentState!.validate() &&
+        passwordController.text.isNotEmpty &&
+        confirmPasswordController.text.isNotEmpty) {
+      valid.value = true;
+    } else {
+      valid.value = false;
     }
   }
 
@@ -55,6 +71,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
   Future<void> close() {
     passwordController.dispose();
     confirmPasswordController.dispose();
+    valid.dispose();
     return super.close();
   }
 }

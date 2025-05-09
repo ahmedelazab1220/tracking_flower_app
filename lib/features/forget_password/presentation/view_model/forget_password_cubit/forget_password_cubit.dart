@@ -20,14 +20,27 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   void doIntent(ForgetPasswordAction action) {
     switch (action) {
       case ForgetPasswordRequestAction():
-        _forgetPassword();
-        break;
+        {
+          _forgetPassword();
+        }
+      case ForgetPasswordAction():
+        {
+          _validate();
+        }
     }
   }
 
   TextEditingController emailController = TextEditingController();
-
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  ValueNotifier<bool> valid = ValueNotifier(false);
+
+  void _validate() {
+    if (formKey.currentState!.validate() && emailController.text.isNotEmpty) {
+      valid.value = true;
+    } else {
+      valid.value = false;
+    }
+  }
 
   Future<void> _forgetPassword() async {
     emit(state.copyWith(baseState: BaseLoadingState()));
@@ -51,6 +64,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   @override
   Future<void> close() {
     emailController.dispose();
+    valid.dispose();
     return super.close();
   }
 }

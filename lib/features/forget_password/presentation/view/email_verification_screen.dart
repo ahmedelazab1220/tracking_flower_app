@@ -1,17 +1,17 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tracking_flower_app/features/forget_password/presentation/view/widgets/header.dart';
-import 'package:tracking_flower_app/features/forget_password/presentation/view/widgets/resend_code.dart';
-import 'package:tracking_flower_app/features/forget_password/presentation/view/widgets/verification_code_input.dart';
 
 import '../../../../../../core/base/base_state.dart';
 import '../../../../../../core/utils/di/di.dart';
 import '../../../../../../core/utils/l10n/locale_keys.g.dart';
 import '../../../../core/utils/dialogs/app_dialogs.dart';
 import '../../../../core/utils/routes/app_routes.dart';
-import '../view_model/email_verification/email_verification_cubit.dart';
-import '../view_model/email_verification/email_verification_state.dart';
+import '../view_model/email_verification_cubit/email_verification_cubit.dart';
+import '../view_model/email_verification_cubit/email_verification_state.dart';
+import 'widgets/shared_header_widget.dart';
+import 'widgets/resend_code.dart';
+import 'widgets/verification_code_input.dart';
 
 class EmailVerificationScreen extends StatefulWidget {
   final String email;
@@ -23,30 +23,30 @@ class EmailVerificationScreen extends StatefulWidget {
 }
 
 class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
-  final EmailVerificationCubit emailVerificationCubit =
-      getIt<EmailVerificationCubit>();
+  final EmailVerificationCubit viewModel = getIt<EmailVerificationCubit>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(LocaleKeys.Password.tr())),
       body: BlocProvider(
-        create: (context) => emailVerificationCubit,
+        create: (context) => viewModel,
         child: BlocListener<EmailVerificationCubit, EmailVerificationState>(
           listener: (context, state) {
             if (state.baseState is BaseLoadingState) {
               AppDialogs.showLoadingDialog(context);
             } else if (state.baseState is BaseSuccessState) {
               AppDialogs.hideLoading(context);
-              Navigator.of(context).pushNamed(
+              Navigator.of(context).pushReplacementNamed(
                 AppRoutes.resetPasswordRoute,
-                arguments: widget.email,
+                arguments: {'email': widget.email},
               );
             } else if (state.baseState is BaseErrorState) {
               AppDialogs.hideLoading(context);
               AppDialogs.showFailureDialog(
                 context,
-                message: (state.baseState as BaseErrorState).errorMessage,
+                message: '',
+                description: (state.baseState as BaseErrorState).errorMessage,
               );
             }
           },
@@ -55,7 +55,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Header(
+                SharedHeaderWidget(
                   title: LocaleKeys.EmailVerification.tr(),
                   subtitle:
                       LocaleKeys
