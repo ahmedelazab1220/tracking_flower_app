@@ -34,7 +34,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
               AppDialogs.showLoadingDialog(context);
             } else if (state.baseState is BaseSuccessState) {
               AppDialogs.hideLoading(context);
-              Navigator.pushNamed(
+              Navigator.pushReplacementNamed(
                 context,
                 AppRoutes.emailVerificationRoute,
                 arguments: {'email': viewModel.emailController.text},

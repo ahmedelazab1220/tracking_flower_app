@@ -37,7 +37,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
               AppDialogs.showLoadingDialog(context);
             } else if (state.baseState is BaseSuccessState) {
               AppDialogs.hideLoading(context);
-              Navigator.of(context).pushNamed(
+              Navigator.of(context).pushReplacementNamed(
                 AppRoutes.resetPasswordRoute,
                 arguments: {'email': widget.email},
               );
