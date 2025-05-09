@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 
 import '../l10n/locale_keys.g.dart';
 
-@lazySingleton
+@injectable
 class Validator {
   String? validateEmail(String input) {
     if (input.isEmpty) {
@@ -24,6 +24,37 @@ class Validator {
     ).hasMatch(input)) {
       return LocaleKeys.InvalidPassword.tr();
     }
+    return null;
+  }
+
+  String? validateConfirmPassword(String input, String password) {
+    if (input.isEmpty || input != password) {
+      return LocaleKeys.ConfirmPasswordMustMatch.tr();
+    }
+    return null;
+  }
+
+  String? validateName(String name) {
+    if (name.isEmpty) {
+      return LocaleKeys.NameCannotBeEmpty.tr();
+    } else if (RegExp(r'[!@#<>?":_`~;[\]\\|=+)(*&^%-]').hasMatch(name)) {
+      return LocaleKeys.InvalidName.tr();
+    } else {
+      return null;
+    }
+  }
+
+  String? validatePhoneNumber(String phoneNumber) {
+    if (phoneNumber.isEmpty) {
+      return LocaleKeys.PhoneNumberCannotBeEmpty.tr();
+    }
+
+    final egyptianPattern = RegExp(r'^\+201[0125][0-9]{8}$');
+
+    if (!egyptianPattern.hasMatch(phoneNumber)) {
+      return LocaleKeys.InvalidPhoneNumber.tr();
+    }
+
     return null;
   }
 }

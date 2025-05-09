@@ -1,26 +1,27 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tracking_flower_app/features/forget_password/presentation/view/widgets/forget_password_form.dart';
 import 'package:tracking_flower_app/features/forget_password/presentation/view/widgets/shared_header_widget.dart';
+import 'package:tracking_flower_app/features/forget_password/presentation/view/widgets/reset_password_form.dart';
 
+import '../../../../../../core/base/base_state.dart';
+import '../../../../../../core/utils/dialogs/app_dialogs.dart';
 import '../../../../../../core/utils/l10n/locale_keys.g.dart';
-import '../../../../core/base/base_state.dart';
 import '../../../../core/utils/di/di.dart';
-import '../../../../core/utils/dialogs/app_dialogs.dart';
 import '../../../../core/utils/routes/app_routes.dart';
-import '../view_model/forget_password_cubit/forget_password_cubit.dart';
-import '../view_model/forget_password_cubit/forget_password_state.dart';
+import '../view_model/reset_password_cubit/reset_password_cubit.dart';
+import '../view_model/reset_password_cubit/reset_password_state.dart';
 
-class ForgetPasswordScreen extends StatefulWidget {
-  const ForgetPasswordScreen({super.key});
+class ResetPasswordScreen extends StatefulWidget {
+  final String email;
+  const ResetPasswordScreen({super.key, required this.email});
 
   @override
-  State<ForgetPasswordScreen> createState() => _ForgetPasswordScreenState();
+  State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
 }
 
-class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
-  final ForgetPasswordCubit viewModel = getIt<ForgetPasswordCubit>();
+class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
+  final ResetPasswordCubit viewModel = getIt<ResetPasswordCubit>();
 
   @override
   Widget build(BuildContext context) {
@@ -28,16 +29,16 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
       appBar: AppBar(title: Text(LocaleKeys.Password.tr())),
       body: BlocProvider(
         create: (context) => viewModel,
-        child: BlocListener<ForgetPasswordCubit, ForgetPasswordState>(
+        child: BlocListener<ResetPasswordCubit, ResetPasswordState>(
           listener: (context, state) {
             if (state.baseState is BaseLoadingState) {
               AppDialogs.showLoadingDialog(context);
             } else if (state.baseState is BaseSuccessState) {
               AppDialogs.hideLoading(context);
-              Navigator.pushReplacementNamed(
+              Navigator.pushNamedAndRemoveUntil(
                 context,
-                AppRoutes.emailVerificationRoute,
-                arguments: {'email': viewModel.emailController.text},
+                AppRoutes.loginRoute,
+                (route) => false,
               );
             } else if (state.baseState is BaseErrorState) {
               AppDialogs.hideLoading(context);
@@ -53,12 +54,10 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
             child: Column(
               children: [
                 SharedHeaderWidget(
-                  title: LocaleKeys.ForgetPassword.tr(),
-                  subtitle:
-                      LocaleKeys
-                          .PleaseEnterYourEmailAssociatedToYourAccount.tr(),
+                  title: LocaleKeys.ResetPassword.tr(),
+                  subtitle: LocaleKeys.PasswordRequirements.tr(),
                 ),
-                const ForgetPasswordForm(),
+                ResetPasswordForm(email: widget.email),
               ],
             ),
           ),

@@ -68,4 +68,22 @@ class MockValidator extends _i1.Mock implements _i7.Validator {
   String? validatePassword(String? input) =>
       (super.noSuchMethod(Invocation.method(#validatePassword, [input]))
           as String?);
+
+  @override
+  String? validateConfirmPassword(String? input, String? password) =>
+      (super.noSuchMethod(
+            Invocation.method(#validateConfirmPassword, [input, password]),
+          )
+          as String?);
+
+  @override
+  String? validateName(String? name) =>
+      (super.noSuchMethod(Invocation.method(#validateName, [name])) as String?);
+
+  @override
+  String? validatePhoneNumber(String? phoneNumber) =>
+      (super.noSuchMethod(
+            Invocation.method(#validatePhoneNumber, [phoneNumber]),
+          )
+          as String?);
 }

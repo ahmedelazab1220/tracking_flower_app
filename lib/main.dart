@@ -59,7 +59,7 @@ class _MyAppState extends State<MyApp> {
           title: 'Tracking Flower App',
           theme: AppTheme.appTheme,
           routes: AppRoutes.routes,
-          initialRoute: routeInitializer.computeInitialRoute(),
+          initialRoute: AppRoutes.forgetPasswordRoute,
         );
       },
     );

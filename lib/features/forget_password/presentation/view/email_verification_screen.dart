@@ -1,26 +1,29 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tracking_flower_app/features/forget_password/presentation/view/widgets/forget_password_form.dart';
-import 'package:tracking_flower_app/features/forget_password/presentation/view/widgets/shared_header_widget.dart';
 
+import '../../../../../../core/base/base_state.dart';
+import '../../../../../../core/utils/di/di.dart';
 import '../../../../../../core/utils/l10n/locale_keys.g.dart';
-import '../../../../core/base/base_state.dart';
-import '../../../../core/utils/di/di.dart';
 import '../../../../core/utils/dialogs/app_dialogs.dart';
 import '../../../../core/utils/routes/app_routes.dart';
-import '../view_model/forget_password_cubit/forget_password_cubit.dart';
-import '../view_model/forget_password_cubit/forget_password_state.dart';
+import '../view_model/email_verification_cubit/email_verification_cubit.dart';
+import '../view_model/email_verification_cubit/email_verification_state.dart';
+import 'widgets/shared_header_widget.dart';
+import 'widgets/resend_code.dart';
+import 'widgets/verification_code_input.dart';
 
-class ForgetPasswordScreen extends StatefulWidget {
-  const ForgetPasswordScreen({super.key});
+class EmailVerificationScreen extends StatefulWidget {
+  final String email;
+  const EmailVerificationScreen({super.key, required this.email});
 
   @override
-  State<ForgetPasswordScreen> createState() => _ForgetPasswordScreenState();
+  State<EmailVerificationScreen> createState() =>
+      _EmailVerificationScreenState();
 }
 
-class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
-  final ForgetPasswordCubit viewModel = getIt<ForgetPasswordCubit>();
+class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
+  final EmailVerificationCubit viewModel = getIt<EmailVerificationCubit>();
 
   @override
   Widget build(BuildContext context) {
@@ -28,16 +31,15 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
       appBar: AppBar(title: Text(LocaleKeys.Password.tr())),
       body: BlocProvider(
         create: (context) => viewModel,
-        child: BlocListener<ForgetPasswordCubit, ForgetPasswordState>(
+        child: BlocListener<EmailVerificationCubit, EmailVerificationState>(
           listener: (context, state) {
             if (state.baseState is BaseLoadingState) {
               AppDialogs.showLoadingDialog(context);
             } else if (state.baseState is BaseSuccessState) {
               AppDialogs.hideLoading(context);
-              Navigator.pushReplacementNamed(
-                context,
-                AppRoutes.emailVerificationRoute,
-                arguments: {'email': viewModel.emailController.text},
+              Navigator.of(context).pushReplacementNamed(
+                AppRoutes.resetPasswordRoute,
+                arguments: {'email': widget.email},
               );
             } else if (state.baseState is BaseErrorState) {
               AppDialogs.hideLoading(context);
@@ -49,16 +51,18 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
             }
           },
           child: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SharedHeaderWidget(
-                  title: LocaleKeys.ForgetPassword.tr(),
+                  title: LocaleKeys.EmailVerification.tr(),
                   subtitle:
                       LocaleKeys
-                          .PleaseEnterYourEmailAssociatedToYourAccount.tr(),
+                          .PleaseEnterYourCodeThatSendToYourEmailAddress.tr(),
                 ),
-                const ForgetPasswordForm(),
+                const VerificationCodeInput(),
+                ResendCode(email: widget.email),
               ],
             ),
           ),

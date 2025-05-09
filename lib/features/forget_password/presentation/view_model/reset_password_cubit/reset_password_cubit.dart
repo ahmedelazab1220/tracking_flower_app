@@ -1,0 +1,77 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
+import '../../../../../core/base/base_state.dart';
+import '../../../../../core/utils/datasource_excution/api_result.dart';
+import '../../../../../core/utils/validator/validator.dart';
+import '../../../../../data/auth/models/reset_password_request_dto.dart';
+import '../../../../../domain/auth/usecase/reset_password_use_case.dart';
+import 'reset_password_state.dart';
+
+@injectable
+class ResetPasswordCubit extends Cubit<ResetPasswordState> {
+  final ResetPasswordUseCase _resetPasswordUseCase;
+  final Validator validator;
+
+  ResetPasswordCubit(this._resetPasswordUseCase, this.validator)
+    : super(ResetPasswordState(baseState: BaseInitialState()));
+
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  ValueNotifier<bool> valid = ValueNotifier<bool>(false);
+
+  void doIntent(ResetPasswordAction action) {
+    switch (action) {
+      case ResetPasswordRequestAction():
+        {
+          _resetPassword(action.email);
+        }
+      case FormDataChangedAction():
+        {
+          _validate();
+        }
+    }
+  }
+
+  void _validate() {
+    if (formKey.currentState!.validate() &&
+        passwordController.text.isNotEmpty &&
+        confirmPasswordController.text.isNotEmpty) {
+      valid.value = true;
+    } else {
+      valid.value = false;
+    }
+  }
+
+  Future<void> _resetPassword(String email) async {
+    emit(state.copyWith(baseState: BaseLoadingState()));
+    final result = await _resetPasswordUseCase(
+      ResetPasswordRequestDto(
+        email: email,
+        newPassword: passwordController.text,
+      ),
+    );
+    switch (result) {
+      case SuccessResult<void>():
+        emit(state.copyWith(baseState: BaseSuccessState()));
+      case FailureResult<void>():
+        emit(
+          state.copyWith(
+            baseState: BaseErrorState(
+              errorMessage: result.exception.toString(),
+            ),
+          ),
+        );
+    }
+  }
+
+  @override
+  Future<void> close() {
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    valid.dispose();
+    return super.close();
+  }
+}

@@ -9,6 +9,12 @@ import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i6;
 import 'package:tracking_flower_app/core/utils/datasource_excution/api_result.dart'
     as _i4;
+import 'package:tracking_flower_app/data/auth/models/forget_password_request_dto.dart'
+    as _i7;
+import 'package:tracking_flower_app/data/auth/models/reset_password_request_dto.dart'
+    as _i9;
+import 'package:tracking_flower_app/data/auth/models/verify_reset_code_request_dto.dart'
+    as _i8;
 import 'package:tracking_flower_app/domain/auth/entity/login_request_entity.dart'
     as _i5;
 import 'package:tracking_flower_app/domain/auth/repo/auth_repo.dart' as _i2;
@@ -43,6 +49,51 @@ class MockAuthRepo extends _i1.Mock implements _i2.AuthRepo {
               _i6.dummyValue<_i4.Result<void>>(
                 this,
                 Invocation.method(#login, [request]),
+              ),
+            ),
+          )
+          as _i3.Future<_i4.Result<void>>);
+
+  @override
+  _i3.Future<_i4.Result<void>> forgetPassword(
+    _i7.ForgetPasswordRequestDto? request,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#forgetPassword, [request]),
+            returnValue: _i3.Future<_i4.Result<void>>.value(
+              _i6.dummyValue<_i4.Result<void>>(
+                this,
+                Invocation.method(#forgetPassword, [request]),
+              ),
+            ),
+          )
+          as _i3.Future<_i4.Result<void>>);
+
+  @override
+  _i3.Future<_i4.Result<void>> verifyResetCode(
+    _i8.VerifyResetCodeRequestDto? request,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#verifyResetCode, [request]),
+            returnValue: _i3.Future<_i4.Result<void>>.value(
+              _i6.dummyValue<_i4.Result<void>>(
+                this,
+                Invocation.method(#verifyResetCode, [request]),
+              ),
+            ),
+          )
+          as _i3.Future<_i4.Result<void>>);
+
+  @override
+  _i3.Future<_i4.Result<void>> resetPassword(
+    _i9.ResetPasswordRequestDto? request,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#resetPassword, [request]),
+            returnValue: _i3.Future<_i4.Result<void>>.value(
+              _i6.dummyValue<_i4.Result<void>>(
+                this,
+                Invocation.method(#resetPassword, [request]),
               ),
             ),
           )
