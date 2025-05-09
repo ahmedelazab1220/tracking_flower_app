@@ -1,16 +1,22 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:tracking_flower_app/core/utils/constants.dart';
 import 'package:tracking_flower_app/core/utils/datasource_excution/api_manager.dart';
 import 'package:tracking_flower_app/core/utils/datasource_excution/api_result.dart';
-import 'package:tracking_flower_app/data/auth/data_source/contract/auth_local_data_source.dart';
 import 'package:tracking_flower_app/data/auth/data_source/contract/auth_remote_data_source.dart';
+import 'package:tracking_flower_app/data/auth/models/forget_password_request_dto.dart';
+import 'package:tracking_flower_app/data/auth/models/forget_password_response_dto.dart';
+import 'package:tracking_flower_app/data/auth/models/reset_password_request_dto.dart';
+import 'package:tracking_flower_app/data/auth/models/reset_password_response_dto.dart';
+import 'package:tracking_flower_app/data/auth/models/verify_reset_code_request_dto.dart';
+import 'package:tracking_flower_app/data/auth/models/verify_reset_code_response_dto.dart';
+import 'package:tracking_flower_app/data/auth/repo_impl/auth_repo_impl.dart';
+import 'package:tracking_flower_app/data/auth/data_source/contract/auth_local_data_source.dart';
 import 'package:tracking_flower_app/data/auth/models/login_request_dto.dart';
 import 'package:tracking_flower_app/data/auth/models/login_response_dto.dart';
-import 'package:tracking_flower_app/data/auth/repo_impl/auth_repo_impl.dart';
 import 'package:tracking_flower_app/domain/auth/entity/login_request_entity.dart';
 
+import '../../../constants_factory.dart';
 import 'auth_repo_impl_test.mocks.dart';
 
 @GenerateMocks([AuthRemoteDataSource, AuthLocalDataSource, ApiManager])
@@ -31,7 +37,7 @@ void main() {
     );
   });
 
-  group('AuthRepoImpl', () {
+  group('AuthRepoImpl Login Test', () {
     test(
       'login should call remote data source and save token and remember me',
       () async {
@@ -75,7 +81,10 @@ void main() {
           ),
         ).thenAnswer((_) async => response);
         when(
-          mockAuthLocalDataSource.saveToken(Constants.token, response.token!),
+          mockAuthLocalDataSource.saveToken(
+            ConstantsFactory.token,
+            response.token!,
+          ),
         ).thenAnswer((_) async {});
         when(
           mockAuthLocalDataSource.setRememberMe(entity.isRememberMe),
@@ -97,7 +106,10 @@ void main() {
           ),
         ).called(1);
         verify(
-          mockAuthLocalDataSource.saveToken(Constants.token, response.token!),
+          mockAuthLocalDataSource.saveToken(
+            ConstantsFactory.token,
+            response.token!,
+          ),
         ).called(1);
         verify(
           mockAuthLocalDataSource.setRememberMe(entity.isRememberMe),
@@ -186,5 +198,73 @@ void main() {
         expect(() => authRepoImpl.login(entity), throwsA(same(exception)));
       },
     );
+  });
+
+  group("AuthRepoImpl Forget Password Test", () {
+    test("Forget Password Test", () async {
+      provideDummy<Result<void>>(SuccessResult<void>(null));
+      provideDummy<Result<dynamic>>(SuccessResult<void>(null));
+
+      // Arrange
+      final requestDto = ForgetPasswordRequestDto(email: "test@example.com");
+      when(
+        mockApiManager.execute(any),
+      ).thenAnswer((_) async => SuccessResult<void>(null));
+
+      when(
+        mockAuthRemoteDataSource.forgetPassword(requestDto),
+      ).thenAnswer((_) async => ForgetPasswordResponseDto());
+
+      // Act
+      final result = await authRepoImpl.forgetPassword(requestDto);
+
+      // Assert
+      expect(result, isA<SuccessResult<void>>());
+    });
+
+    test("Verify Reset Code Test", () async {
+      provideDummy<Result<void>>(SuccessResult<void>(null));
+      provideDummy<Result<dynamic>>(SuccessResult<void>(null));
+
+      // Arrange
+      final requestDto = VerifyResetCodeRequestDto(resetCode: '123456');
+      when(
+        mockApiManager.execute(any),
+      ).thenAnswer((_) async => SuccessResult<void>(null));
+
+      when(
+        mockAuthRemoteDataSource.verifyResetCode(requestDto),
+      ).thenAnswer((_) async => VerifyResetCodeResponseDto());
+
+      // Act
+      final result = await authRepoImpl.verifyResetCode(requestDto);
+
+      // Assert
+      expect(result, isA<SuccessResult<void>>());
+    });
+
+    test("Reset Password Test", () async {
+      provideDummy<Result<void>>(SuccessResult<void>(null));
+      provideDummy<Result<dynamic>>(SuccessResult<void>(null));
+
+      // Arrange
+      final requestDto = ResetPasswordRequestDto(
+        email: "test@example.com",
+        newPassword: "Test@123",
+      );
+      when(
+        mockApiManager.execute(any),
+      ).thenAnswer((_) async => SuccessResult<void>(null));
+
+      when(
+        mockAuthRemoteDataSource.resetPassword(requestDto),
+      ).thenAnswer((_) async => ResetPasswordResponseDto());
+
+      // Act
+      final result = await authRepoImpl.resetPassword(requestDto);
+
+      // Assert
+      expect(result, isA<SuccessResult<void>>());
+    });
   });
 }

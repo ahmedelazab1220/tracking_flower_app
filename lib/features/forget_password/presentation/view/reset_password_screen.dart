@@ -1,8 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tracking_flower_app/features/forget_password/presentation/view/widgets/shared_header_widget.dart';
-import 'package:tracking_flower_app/features/forget_password/presentation/view/widgets/reset_password_form.dart';
 
 import '../../../../../../core/base/base_state.dart';
 import '../../../../../../core/utils/dialogs/app_dialogs.dart';
@@ -11,6 +9,8 @@ import '../../../../core/utils/di/di.dart';
 import '../../../../core/utils/routes/app_routes.dart';
 import '../view_model/reset_password_cubit/reset_password_cubit.dart';
 import '../view_model/reset_password_cubit/reset_password_state.dart';
+import 'widgets/reset_password_form.dart';
+import 'widgets/shared_header_widget.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   final String email;

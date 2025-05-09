@@ -7,7 +7,7 @@ import 'package:tracking_flower_app/domain/auth/entity/login_request_entity.dart
 import 'package:tracking_flower_app/domain/auth/repo/auth_repo.dart';
 import 'package:tracking_flower_app/domain/auth/use_case/login_use_case.dart';
 
-import 'login_usecase_test.mocks.dart';
+import 'login_use_case_test.mocks.dart';
 
 @GenerateMocks([AuthRepo])
 void main() {
