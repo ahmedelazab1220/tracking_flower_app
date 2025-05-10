@@ -21,7 +21,6 @@ Future<void> main() async {
       supportedLocales: const [Locale(Constants.ar), Locale(Constants.en)],
       path: Constants.assetsTranslations,
       startLocale: AppStarter.startLocale ?? const Locale(Constants.en),
-
       fallbackLocale: const Locale(Constants.en),
       child: const MyApp(),
     ),

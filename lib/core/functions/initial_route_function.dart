@@ -1,5 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../utils/constants.dart';
 import '../utils/routes/app_routes.dart';
 
