@@ -15,4 +15,5 @@ class AppIcons {
   static const String notificationIcon = "${baseRoute}notification.svg";
   static const String orderIcon = "${baseRoute}order.svg";
   static const String invalidIcon = "${baseRoute}invalid.svg";
+  static const String floweryStore = "${baseRoute}flowery_store.svg";
 }

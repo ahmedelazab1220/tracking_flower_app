@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tracking_flower_app/features/onBoarding/presentation/view/on_boarding_screen.dart';
 
-import '../../../features/login/presentation/view/screens/login_screen.dart';
-
 import '../../../features/forget_password/presentation/view/email_verification_screen.dart';
 import '../../../features/forget_password/presentation/view/forget_password_screen.dart';
 import '../../../features/forget_password/presentation/view/reset_password_screen.dart';
+import '../../../features/home_screen/presentation/view/home_screen.dart';
+import '../../../features/login/presentation/view/screens/login_screen.dart';
 
 class AppRoutes {
   AppRoutes._();
@@ -16,8 +16,11 @@ class AppRoutes {
   static const String forgetPasswordRoute = "/forgetPassword";
   static const String resetPasswordRoute = '/reset-password';
   static const String emailVerificationRoute = '/email-verification';
+  static const String homeRoute = '/home';
+
   static Map<String, Widget Function(BuildContext)> routes = {
     onBoardingRoute: (context) => const OnBoardingScreen(),
+    homeRoute: (context) => const HomeScreen(),
     loginRoute: (context) => const LoginScreen(),
     forgetPasswordRoute: (context) => const ForgetPasswordScreen(),
     resetPasswordRoute: (context) {

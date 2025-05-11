@@ -1,5 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../utils/constants.dart';
 import '../utils/routes/app_routes.dart';
 
@@ -12,9 +13,9 @@ class RouteInitializer {
   String? computeInitialRoute() {
     var isRememberMe = sharedPreferences.getBool(Constants.isRememberMe);
     if (isRememberMe != null) {
-      return AppRoutes.loginRoute;
+      return AppRoutes.homeRoute;
     } else {
-      return AppRoutes.onBoardingRoute;
+      return AppRoutes.homeRoute;
     }
   }
 }

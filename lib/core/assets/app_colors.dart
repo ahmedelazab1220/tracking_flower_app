@@ -19,6 +19,7 @@ class AppColors {
   static const Color gray = Color(0xFF535353);
   static const Color lightGray = Color(0xFFA6A6A6);
   static const Color lightPink = Color(0xFFF9ECF0);
+  static const Color yellow = Color(0xFFC8D444);
   static const MaterialColor black = MaterialColor(0xFF0C1015, <int, Color>{
     baseColor: Color(0xFF0C1015),
     colorCode10: Color(0xFFCECFD0),
