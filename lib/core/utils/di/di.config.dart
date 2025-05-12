@@ -9,6 +9,8 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dio/dio.dart' as _i361;
+import 'package:firebase_cloud_firestore/firebase_cloud_firestore.dart'
+    as _i217;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
@@ -25,11 +27,20 @@ import '../../../data/auth/data_source/local/auth_local_data_source_impl.dart'
 import '../../../data/auth/data_source/remote/auth_remote_data_source_impl.dart'
     as _i173;
 import '../../../data/auth/repo_impl/auth_repo_impl.dart' as _i15;
+import '../../../data/order_details/data_source/contract/order_details_remote_data_source.dart'
+    as _i447;
+import '../../../data/order_details/data_source/remote/order_details_remote_data_source_impl.dart'
+    as _i678;
+import '../../../data/order_details/repo_impl/order_details_repo_impl.dart'
+    as _i249;
 import '../../../domain/auth/repo/auth_repo.dart' as _i1047;
+import '../../../domain/auth/use_case/forget_password_use_case.dart' as _i728;
 import '../../../domain/auth/use_case/login_use_case.dart' as _i872;
-import '../../../domain/auth/usecase/forget_password_use_case.dart' as _i615;
-import '../../../domain/auth/usecase/reset_password_use_case.dart' as _i313;
-import '../../../domain/auth/usecase/verify_reset_code_use_case.dart' as _i684;
+import '../../../domain/auth/use_case/reset_password_use_case.dart' as _i55;
+import '../../../domain/auth/use_case/verify_reset_code_use_case.dart' as _i444;
+import '../../../domain/order_details/repo/order_details_repo.dart' as _i817;
+import '../../../domain/order_details/use_case/update_order_state_use_case.dart'
+    as _i890;
 import '../../../features/forget_password/presentation/view_model/email_verification_cubit/email_verification_cubit.dart'
     as _i296;
 import '../../../features/forget_password/presentation/view_model/forget_password_cubit/forget_password_cubit.dart'
@@ -38,10 +49,13 @@ import '../../../features/forget_password/presentation/view_model/reset_password
     as _i61;
 import '../../../features/login/presentation/view_model/login_cubit.dart'
     as _i638;
+import '../../../features/order_details/presentation/view_model/order_details_cubit.dart'
+    as _i644;
 import '../../functions/initial_route_function.dart' as _i687;
 import '../bloc_observer/bloc_observer_service.dart' as _i649;
 import '../datasource_excution/api_manager.dart' as _i28;
 import '../datasource_excution/dio_module.dart' as _i953;
+import '../firebase_module.dart' as _i1007;
 import '../flutter_secure_storage_module.dart' as _i712;
 import '../logging/logger_module.dart' as _i470;
 import '../shared_preference_module.dart' as _i60;
@@ -55,6 +69,7 @@ extension GetItInjectableX on _i174.GetIt {
   }) async {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final sharedPreferenceModule = _$SharedPreferenceModule();
+    final firebaseModule = _$FirebaseModule();
     final secureStorageModule = _$SecureStorageModule();
     final loggerModule = _$LoggerModule();
     final dioModule = _$DioModule();
@@ -64,6 +79,7 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i468.Validator>(() => _i468.Validator());
     gh.singleton<_i28.ApiManager>(() => _i28.ApiManager());
+    gh.lazySingleton<_i217.FirebaseFirestore>(() => firebaseModule.firestore);
     gh.lazySingleton<_i558.FlutterSecureStorage>(
       () => secureStorageModule.storage,
     );
@@ -86,8 +102,21 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i460.SharedPreferences>(),
       ),
     );
+    gh.factory<_i447.OrderDetailsRemoteDataSource>(
+      () =>
+          _i678.OrderDetailsRemoteDataSourceImpl(gh<_i217.FirebaseFirestore>()),
+    );
     gh.factory<_i1064.AuthRetrofitClient>(
       () => _i1064.AuthRetrofitClient(gh<_i361.Dio>()),
+    );
+    gh.factory<_i817.OrderDetailsRepo>(
+      () => _i249.OrderDetailsRepoImpl(
+        gh<_i447.OrderDetailsRemoteDataSource>(),
+        gh<_i28.ApiManager>(),
+      ),
+    );
+    gh.factory<_i890.UpdateOrderStateUseCase>(
+      () => _i890.UpdateOrderStateUseCase(gh<_i817.OrderDetailsRepo>()),
     );
     gh.factory<_i774.AuthRemoteDataSource>(
       () => _i173.AuthRemoteDataSourceImpl(gh<_i1064.AuthRetrofitClient>()),
@@ -99,37 +128,40 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i28.ApiManager>(),
       ),
     );
-    gh.factory<_i615.ForgetPasswordUseCase>(
-      () => _i615.ForgetPasswordUseCase(gh<_i1047.AuthRepo>()),
+    gh.factory<_i644.OrderDetailsCubit>(
+      () => _i644.OrderDetailsCubit(gh<_i890.UpdateOrderStateUseCase>()),
     );
-    gh.factory<_i313.ResetPasswordUseCase>(
-      () => _i313.ResetPasswordUseCase(gh<_i1047.AuthRepo>()),
+    gh.factory<_i728.ForgetPasswordUseCase>(
+      () => _i728.ForgetPasswordUseCase(gh<_i1047.AuthRepo>()),
     );
-    gh.factory<_i684.VerifyResetCodeUseCase>(
-      () => _i684.VerifyResetCodeUseCase(gh<_i1047.AuthRepo>()),
+    gh.factory<_i55.ResetPasswordUseCase>(
+      () => _i55.ResetPasswordUseCase(gh<_i1047.AuthRepo>()),
+    );
+    gh.factory<_i444.VerifyResetCodeUseCase>(
+      () => _i444.VerifyResetCodeUseCase(gh<_i1047.AuthRepo>()),
     );
     gh.factory<_i872.LoginUsecase>(
       () => _i872.LoginUsecase(gh<_i1047.AuthRepo>()),
-    );
-    gh.factory<_i296.EmailVerificationCubit>(
-      () => _i296.EmailVerificationCubit(
-        gh<_i684.VerifyResetCodeUseCase>(),
-        gh<_i615.ForgetPasswordUseCase>(),
-        gh<_i468.Validator>(),
-      ),
-    );
-    gh.factory<_i61.ResetPasswordCubit>(
-      () => _i61.ResetPasswordCubit(
-        gh<_i313.ResetPasswordUseCase>(),
-        gh<_i468.Validator>(),
-      ),
     );
     gh.factory<_i638.LoginCubit>(
       () => _i638.LoginCubit(gh<_i872.LoginUsecase>(), gh<_i468.Validator>()),
     );
     gh.factory<_i3.ForgetPasswordCubit>(
       () => _i3.ForgetPasswordCubit(
-        gh<_i615.ForgetPasswordUseCase>(),
+        gh<_i728.ForgetPasswordUseCase>(),
+        gh<_i468.Validator>(),
+      ),
+    );
+    gh.factory<_i296.EmailVerificationCubit>(
+      () => _i296.EmailVerificationCubit(
+        gh<_i444.VerifyResetCodeUseCase>(),
+        gh<_i728.ForgetPasswordUseCase>(),
+        gh<_i468.Validator>(),
+      ),
+    );
+    gh.factory<_i61.ResetPasswordCubit>(
+      () => _i61.ResetPasswordCubit(
+        gh<_i55.ResetPasswordUseCase>(),
         gh<_i468.Validator>(),
       ),
     );
@@ -138,6 +170,8 @@ extension GetItInjectableX on _i174.GetIt {
 }
 
 class _$SharedPreferenceModule extends _i60.SharedPreferenceModule {}
+
+class _$FirebaseModule extends _i1007.FirebaseModule {}
 
 class _$SecureStorageModule extends _i712.SecureStorageModule {}
 

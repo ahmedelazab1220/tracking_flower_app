@@ -136,11 +136,13 @@ abstract class LocaleKeys {
   static const EnterAValidEmail = 'EnterAValidEmail';
   static const EmailCannotBeEmpty = 'EmailCannotBeEmpty';
   static const PasswordCannotBeEmpty = 'PasswordCannotBeEmpty';
+  static const Version = 'Version';
   static const ConfirmPasswordMustMatch = 'ConfirmPasswordMustMatch';
   static const NameCannotBeEmpty = 'NameCannotBeEmpty';
   static const InvalidName = 'InvalidName';
   static const PhoneNumberCannotBeEmpty = 'PhoneNumberCannotBeEmpty';
   static const InvalidPhoneNumber = 'InvalidPhoneNumber';
   static const InvalidPassword = 'InvalidPassword';
-  static const Version = 'Version';
+  static const Status = 'Status';
+  static const Arrived = 'Arrived';
 }

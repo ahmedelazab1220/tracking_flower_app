@@ -6,7 +6,7 @@ import '../../../../../core/base/base_state.dart';
 import '../../../../../core/utils/datasource_excution/api_result.dart';
 import '../../../../../core/utils/validator/validator.dart';
 import '../../../../../data/auth/models/forget_password_request_dto.dart';
-import '../../../../../domain/auth/usecase/forget_password_use_case.dart';
+import '../../../../../domain/auth/use_case/forget_password_use_case.dart';
 import 'forget_password_state.dart';
 
 @injectable

@@ -75,14 +75,9 @@ class LoginCubit extends Cubit<LoginState> {
     final isValid = formKey.currentState?.validate() ?? false;
     final isFilled =
         emailController.text.isNotEmpty && passwordController.text.isNotEmpty;
-    final shouldValidate = isFilled && isValid;
+    validate = isFilled && isValid;
 
-    emit(
-      state.copyWith(
-        loginState: BaseInitialState(),
-        isValidate: shouldValidate,
-      ),
-    );
+    emit(state.copyWith(loginState: BaseInitialState(), isValidate: validate));
   }
 
   void dispose() {
