@@ -6,6 +6,7 @@ import '../../../features/login/presentation/view/screens/login_screen.dart';
 import '../../../features/forget_password/presentation/view/email_verification_screen.dart';
 import '../../../features/forget_password/presentation/view/forget_password_screen.dart';
 import '../../../features/forget_password/presentation/view/reset_password_screen.dart';
+import '../../../features/success_screen/presentation/view/success_screen.dart';
 
 class AppRoutes {
   AppRoutes._();
@@ -16,10 +17,12 @@ class AppRoutes {
   static const String forgetPasswordRoute = "/forgetPassword";
   static const String resetPasswordRoute = '/reset-password';
   static const String emailVerificationRoute = '/email-verification';
+  static const String successRoute = '/success';
   static Map<String, Widget Function(BuildContext)> routes = {
     onBoardingRoute: (context) => const OnBoardingScreen(),
     loginRoute: (context) => const LoginScreen(),
     forgetPasswordRoute: (context) => const ForgetPasswordScreen(),
+    successRoute: (context) => const SuccessScreen(),
     resetPasswordRoute: (context) {
       final args =
           ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
