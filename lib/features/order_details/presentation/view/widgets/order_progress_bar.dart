@@ -15,7 +15,7 @@ class OrderProgressBar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: List.generate(totalSteps, (index) {
-        int stepIndex = (index ~/ 1) + 1;
+        int stepIndex = index + 1;
         return Container(
           width: 65,
           height: 6,
