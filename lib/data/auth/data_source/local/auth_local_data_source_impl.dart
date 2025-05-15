@@ -1,8 +1,12 @@
+import 'dart:convert';
+
+import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/utils/constants.dart';
+import '../../models/country_dto.dart';
 import '../contract/auth_local_data_source.dart';
 
 @Injectable(as: AuthLocalDataSource)
@@ -40,5 +44,14 @@ class AuthLocalDataSourceImpl extends AuthLocalDataSource {
   @override
   Future<void> clearAll() async {
     return await _flutterSecureStorage.deleteAll();
+  }
+
+  @override
+  Future<List<CountryDto>> getAllCountries() async {
+    return await Future.delayed(const Duration(seconds: 1), () async {
+      final countries = await rootBundle.loadString(Constants.assetsCountries);
+      final countriesJson = json.decode(countries) as List;
+      return countriesJson.map((e) => CountryDto.fromJson(e)).toList();
+    });
   }
 }

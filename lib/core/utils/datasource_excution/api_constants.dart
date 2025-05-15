@@ -1,7 +1,7 @@
 class ApiConstants {
   // Private constructor to prevent instantiation
   ApiConstants._();
-
+  static const String aiModelApiKey = 'AIzaSyDvKyDWEysf_XcTHFAQ3M2tOnJAupsY8Jc';
   static const String baseUrl = "https://flower.elevateegy.com/api/v1/";
   //////////////////////////// Auth Routes ////////////////////////////
   static const String login = "drivers/signin";

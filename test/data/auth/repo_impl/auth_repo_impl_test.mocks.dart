@@ -3,32 +3,44 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i7;
+import 'dart:async' as _i11;
+import 'dart:io' as _i16;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i15;
+import 'package:mockito/src/dummies.dart' as _i22;
 import 'package:tracking_flower_app/core/utils/datasource_excution/api_manager.dart'
-    as _i13;
+    as _i20;
 import 'package:tracking_flower_app/core/utils/datasource_excution/api_result.dart'
-    as _i14;
+    as _i21;
 import 'package:tracking_flower_app/data/auth/data_source/contract/auth_local_data_source.dart'
-    as _i12;
+    as _i18;
 import 'package:tracking_flower_app/data/auth/data_source/contract/auth_remote_data_source.dart'
-    as _i6;
-import 'package:tracking_flower_app/data/auth/models/forget_password_request_dto.dart'
+    as _i10;
+import 'package:tracking_flower_app/data/auth/models/apply_request_dto.dart'
+    as _i17;
+import 'package:tracking_flower_app/data/auth/models/apply_response_dto.dart'
     as _i9;
+import 'package:tracking_flower_app/data/auth/models/country_dto.dart' as _i19;
+import 'package:tracking_flower_app/data/auth/models/forget_password_request_dto.dart'
+    as _i13;
 import 'package:tracking_flower_app/data/auth/models/forget_password_response_dto.dart'
     as _i3;
 import 'package:tracking_flower_app/data/auth/models/login_request_dto.dart'
-    as _i8;
+    as _i12;
 import 'package:tracking_flower_app/data/auth/models/login_response_dto.dart'
     as _i2;
+import 'package:tracking_flower_app/data/auth/models/national_id_dto.dart'
+    as _i8;
 import 'package:tracking_flower_app/data/auth/models/reset_password_request_dto.dart'
-    as _i10;
+    as _i14;
 import 'package:tracking_flower_app/data/auth/models/reset_password_response_dto.dart'
     as _i4;
+import 'package:tracking_flower_app/data/auth/models/vehicle_license_dto.dart'
+    as _i7;
+import 'package:tracking_flower_app/data/auth/models/vehicles_response_dto.dart'
+    as _i6;
 import 'package:tracking_flower_app/data/auth/models/verify_reset_code_request_dto.dart'
-    as _i11;
+    as _i15;
 import 'package:tracking_flower_app/data/auth/models/verify_reset_code_response_dto.dart'
     as _i5;
 
@@ -70,154 +82,245 @@ class _FakeVerifyResetCodeResponseDto_3 extends _i1.SmartFake
     : super(parent, parentInvocation);
 }
 
+class _FakeVehiclesResponseDto_4 extends _i1.SmartFake
+    implements _i6.VehiclesResponseDto {
+  _FakeVehiclesResponseDto_4(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
+class _FakeVehicleLicenseDto_5 extends _i1.SmartFake
+    implements _i7.VehicleLicenseDto {
+  _FakeVehicleLicenseDto_5(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
+class _FakeNationalIdDto_6 extends _i1.SmartFake implements _i8.NationalIdDto {
+  _FakeNationalIdDto_6(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
+class _FakeApplyResponseDto_7 extends _i1.SmartFake
+    implements _i9.ApplyResponseDto {
+  _FakeApplyResponseDto_7(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
 /// A class which mocks [AuthRemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockAuthRemoteDataSource extends _i1.Mock
-    implements _i6.AuthRemoteDataSource {
+    implements _i10.AuthRemoteDataSource {
   MockAuthRemoteDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i7.Future<_i2.LoginResponseDto> login(_i8.LoginRequestDto? request) =>
+  _i11.Future<_i2.LoginResponseDto> login(_i12.LoginRequestDto? request) =>
       (super.noSuchMethod(
             Invocation.method(#login, [request]),
-            returnValue: _i7.Future<_i2.LoginResponseDto>.value(
+            returnValue: _i11.Future<_i2.LoginResponseDto>.value(
               _FakeLoginResponseDto_0(
                 this,
                 Invocation.method(#login, [request]),
               ),
             ),
           )
-          as _i7.Future<_i2.LoginResponseDto>);
+          as _i11.Future<_i2.LoginResponseDto>);
 
   @override
-  _i7.Future<_i3.ForgetPasswordResponseDto> forgetPassword(
-    _i9.ForgetPasswordRequestDto? request,
+  _i11.Future<_i3.ForgetPasswordResponseDto> forgetPassword(
+    _i13.ForgetPasswordRequestDto? request,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#forgetPassword, [request]),
-            returnValue: _i7.Future<_i3.ForgetPasswordResponseDto>.value(
+            returnValue: _i11.Future<_i3.ForgetPasswordResponseDto>.value(
               _FakeForgetPasswordResponseDto_1(
                 this,
                 Invocation.method(#forgetPassword, [request]),
               ),
             ),
           )
-          as _i7.Future<_i3.ForgetPasswordResponseDto>);
+          as _i11.Future<_i3.ForgetPasswordResponseDto>);
 
   @override
-  _i7.Future<_i4.ResetPasswordResponseDto> resetPassword(
-    _i10.ResetPasswordRequestDto? request,
+  _i11.Future<_i4.ResetPasswordResponseDto> resetPassword(
+    _i14.ResetPasswordRequestDto? request,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#resetPassword, [request]),
-            returnValue: _i7.Future<_i4.ResetPasswordResponseDto>.value(
+            returnValue: _i11.Future<_i4.ResetPasswordResponseDto>.value(
               _FakeResetPasswordResponseDto_2(
                 this,
                 Invocation.method(#resetPassword, [request]),
               ),
             ),
           )
-          as _i7.Future<_i4.ResetPasswordResponseDto>);
+          as _i11.Future<_i4.ResetPasswordResponseDto>);
 
   @override
-  _i7.Future<_i5.VerifyResetCodeResponseDto> verifyResetCode(
-    _i11.VerifyResetCodeRequestDto? request,
+  _i11.Future<_i5.VerifyResetCodeResponseDto> verifyResetCode(
+    _i15.VerifyResetCodeRequestDto? request,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#verifyResetCode, [request]),
-            returnValue: _i7.Future<_i5.VerifyResetCodeResponseDto>.value(
+            returnValue: _i11.Future<_i5.VerifyResetCodeResponseDto>.value(
               _FakeVerifyResetCodeResponseDto_3(
                 this,
                 Invocation.method(#verifyResetCode, [request]),
               ),
             ),
           )
-          as _i7.Future<_i5.VerifyResetCodeResponseDto>);
+          as _i11.Future<_i5.VerifyResetCodeResponseDto>);
+
+  @override
+  _i11.Future<_i6.VehiclesResponseDto> getVehicles() =>
+      (super.noSuchMethod(
+            Invocation.method(#getVehicles, []),
+            returnValue: _i11.Future<_i6.VehiclesResponseDto>.value(
+              _FakeVehiclesResponseDto_4(
+                this,
+                Invocation.method(#getVehicles, []),
+              ),
+            ),
+          )
+          as _i11.Future<_i6.VehiclesResponseDto>);
+
+  @override
+  _i11.Future<_i7.VehicleLicenseDto> extractDataFromDrivingLicense(
+    _i16.File? imageFile,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#extractDataFromDrivingLicense, [imageFile]),
+            returnValue: _i11.Future<_i7.VehicleLicenseDto>.value(
+              _FakeVehicleLicenseDto_5(
+                this,
+                Invocation.method(#extractDataFromDrivingLicense, [imageFile]),
+              ),
+            ),
+          )
+          as _i11.Future<_i7.VehicleLicenseDto>);
+
+  @override
+  _i11.Future<_i8.NationalIdDto> extractDataFromNationalId(
+    _i16.File? imageFile,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#extractDataFromNationalId, [imageFile]),
+            returnValue: _i11.Future<_i8.NationalIdDto>.value(
+              _FakeNationalIdDto_6(
+                this,
+                Invocation.method(#extractDataFromNationalId, [imageFile]),
+              ),
+            ),
+          )
+          as _i11.Future<_i8.NationalIdDto>);
+
+  @override
+  _i11.Future<_i9.ApplyResponseDto> apply(
+    _i17.ApplyRequestDto? applyRequestDto,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#apply, [applyRequestDto]),
+            returnValue: _i11.Future<_i9.ApplyResponseDto>.value(
+              _FakeApplyResponseDto_7(
+                this,
+                Invocation.method(#apply, [applyRequestDto]),
+              ),
+            ),
+          )
+          as _i11.Future<_i9.ApplyResponseDto>);
 }
 
 /// A class which mocks [AuthLocalDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockAuthLocalDataSource extends _i1.Mock
-    implements _i12.AuthLocalDataSource {
+    implements _i18.AuthLocalDataSource {
   MockAuthLocalDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i7.Future<void> saveToken(String? key, String? value) =>
+  _i11.Future<void> saveToken(String? key, String? value) =>
       (super.noSuchMethod(
             Invocation.method(#saveToken, [key, value]),
-            returnValue: _i7.Future<void>.value(),
-            returnValueForMissingStub: _i7.Future<void>.value(),
+            returnValue: _i11.Future<void>.value(),
+            returnValueForMissingStub: _i11.Future<void>.value(),
           )
-          as _i7.Future<void>);
+          as _i11.Future<void>);
 
   @override
-  _i7.Future<String?> getToken(String? key) =>
+  _i11.Future<String?> getToken(String? key) =>
       (super.noSuchMethod(
             Invocation.method(#getToken, [key]),
-            returnValue: _i7.Future<String?>.value(),
+            returnValue: _i11.Future<String?>.value(),
           )
-          as _i7.Future<String?>);
+          as _i11.Future<String?>);
 
   @override
-  _i7.Future<void> deleteToken(String? key) =>
+  _i11.Future<void> deleteToken(String? key) =>
       (super.noSuchMethod(
             Invocation.method(#deleteToken, [key]),
-            returnValue: _i7.Future<void>.value(),
-            returnValueForMissingStub: _i7.Future<void>.value(),
+            returnValue: _i11.Future<void>.value(),
+            returnValueForMissingStub: _i11.Future<void>.value(),
           )
-          as _i7.Future<void>);
+          as _i11.Future<void>);
 
   @override
-  _i7.Future<void> setRememberMe(bool? value) =>
+  _i11.Future<void> setRememberMe(bool? value) =>
       (super.noSuchMethod(
             Invocation.method(#setRememberMe, [value]),
-            returnValue: _i7.Future<void>.value(),
-            returnValueForMissingStub: _i7.Future<void>.value(),
+            returnValue: _i11.Future<void>.value(),
+            returnValueForMissingStub: _i11.Future<void>.value(),
           )
-          as _i7.Future<void>);
+          as _i11.Future<void>);
 
   @override
-  _i7.Future<bool> isRememberMe() =>
+  _i11.Future<bool> isRememberMe() =>
       (super.noSuchMethod(
             Invocation.method(#isRememberMe, []),
-            returnValue: _i7.Future<bool>.value(false),
+            returnValue: _i11.Future<bool>.value(false),
           )
-          as _i7.Future<bool>);
+          as _i11.Future<bool>);
 
   @override
-  _i7.Future<void> clearAll() =>
+  _i11.Future<void> clearAll() =>
       (super.noSuchMethod(
             Invocation.method(#clearAll, []),
-            returnValue: _i7.Future<void>.value(),
-            returnValueForMissingStub: _i7.Future<void>.value(),
+            returnValue: _i11.Future<void>.value(),
+            returnValueForMissingStub: _i11.Future<void>.value(),
           )
-          as _i7.Future<void>);
+          as _i11.Future<void>);
+
+  @override
+  _i11.Future<List<_i19.CountryDto>> getAllCountries() =>
+      (super.noSuchMethod(
+            Invocation.method(#getAllCountries, []),
+            returnValue: _i11.Future<List<_i19.CountryDto>>.value(
+              <_i19.CountryDto>[],
+            ),
+          )
+          as _i11.Future<List<_i19.CountryDto>>);
 }
 
 /// A class which mocks [ApiManager].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockApiManager extends _i1.Mock implements _i13.ApiManager {
+class MockApiManager extends _i1.Mock implements _i20.ApiManager {
   MockApiManager() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i7.Future<_i14.Result<T>> execute<T>(_i7.Future<T> Function()? apiCall) =>
+  _i11.Future<_i21.Result<T>> execute<T>(_i11.Future<T> Function()? apiCall) =>
       (super.noSuchMethod(
             Invocation.method(#execute, [apiCall]),
-            returnValue: _i7.Future<_i14.Result<T>>.value(
-              _i15.dummyValue<_i14.Result<T>>(
+            returnValue: _i11.Future<_i21.Result<T>>.value(
+              _i22.dummyValue<_i21.Result<T>>(
                 this,
                 Invocation.method(#execute, [apiCall]),
               ),
             ),
           )
-          as _i7.Future<_i14.Result<T>>);
+          as _i11.Future<_i21.Result<T>>);
 }

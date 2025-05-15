@@ -4,6 +4,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
+import 'dart:io' as _i13;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i6;
@@ -15,8 +16,18 @@ import 'package:tracking_flower_app/data/auth/models/reset_password_request_dto.
     as _i9;
 import 'package:tracking_flower_app/data/auth/models/verify_reset_code_request_dto.dart'
     as _i8;
+import 'package:tracking_flower_app/domain/auth/entity/apply_request_entity.dart'
+    as _i15;
+import 'package:tracking_flower_app/domain/auth/entity/country_entity.dart'
+    as _i10;
 import 'package:tracking_flower_app/domain/auth/entity/login_request_entity.dart'
     as _i5;
+import 'package:tracking_flower_app/domain/auth/entity/national_id_entity.dart'
+    as _i14;
+import 'package:tracking_flower_app/domain/auth/entity/vehicle_license_entity.dart'
+    as _i12;
+import 'package:tracking_flower_app/domain/auth/entity/vehicles_entity.dart'
+    as _i11;
 import 'package:tracking_flower_app/domain/auth/repo/auth_repo.dart' as _i2;
 
 // ignore_for_file: type=lint
@@ -94,6 +105,79 @@ class MockAuthRepo extends _i1.Mock implements _i2.AuthRepo {
               _i6.dummyValue<_i4.Result<void>>(
                 this,
                 Invocation.method(#resetPassword, [request]),
+              ),
+            ),
+          )
+          as _i3.Future<_i4.Result<void>>);
+
+  @override
+  _i3.Future<List<_i10.CountryEntity>> getCountries() =>
+      (super.noSuchMethod(
+            Invocation.method(#getCountries, []),
+            returnValue: _i3.Future<List<_i10.CountryEntity>>.value(
+              <_i10.CountryEntity>[],
+            ),
+          )
+          as _i3.Future<List<_i10.CountryEntity>>);
+
+  @override
+  _i3.Future<_i4.Result<List<_i11.VehiclesEntity>>> getVehicles() =>
+      (super.noSuchMethod(
+            Invocation.method(#getVehicles, []),
+            returnValue:
+                _i3.Future<_i4.Result<List<_i11.VehiclesEntity>>>.value(
+                  _i6.dummyValue<_i4.Result<List<_i11.VehiclesEntity>>>(
+                    this,
+                    Invocation.method(#getVehicles, []),
+                  ),
+                ),
+          )
+          as _i3.Future<_i4.Result<List<_i11.VehiclesEntity>>>);
+
+  @override
+  _i3.Future<_i4.Result<_i12.VehicleLicenseEntity>>
+  extractDataFromVehicleLicense(_i13.File? vehicleLicenseImage) =>
+      (super.noSuchMethod(
+            Invocation.method(#extractDataFromVehicleLicense, [
+              vehicleLicenseImage,
+            ]),
+            returnValue:
+                _i3.Future<_i4.Result<_i12.VehicleLicenseEntity>>.value(
+                  _i6.dummyValue<_i4.Result<_i12.VehicleLicenseEntity>>(
+                    this,
+                    Invocation.method(#extractDataFromVehicleLicense, [
+                      vehicleLicenseImage,
+                    ]),
+                  ),
+                ),
+          )
+          as _i3.Future<_i4.Result<_i12.VehicleLicenseEntity>>);
+
+  @override
+  _i3.Future<_i4.Result<_i14.NationalIdEntity>> extractDataFromNationalId(
+    _i13.File? nationalIdImage,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#extractDataFromNationalId, [nationalIdImage]),
+            returnValue: _i3.Future<_i4.Result<_i14.NationalIdEntity>>.value(
+              _i6.dummyValue<_i4.Result<_i14.NationalIdEntity>>(
+                this,
+                Invocation.method(#extractDataFromNationalId, [
+                  nationalIdImage,
+                ]),
+              ),
+            ),
+          )
+          as _i3.Future<_i4.Result<_i14.NationalIdEntity>>);
+
+  @override
+  _i3.Future<_i4.Result<void>> apply(_i15.ApplyRequestEntity? request) =>
+      (super.noSuchMethod(
+            Invocation.method(#apply, [request]),
+            returnValue: _i3.Future<_i4.Result<void>>.value(
+              _i6.dummyValue<_i4.Result<void>>(
+                this,
+                Invocation.method(#apply, [request]),
               ),
             ),
           )

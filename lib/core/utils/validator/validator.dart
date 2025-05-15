@@ -49,9 +49,18 @@ class Validator {
       return LocaleKeys.PhoneNumberCannotBeEmpty.tr();
     }
 
-    final egyptianPattern = RegExp(r'^\+201[0125][0-9]{8}$');
+    final internationalPattern = RegExp(r'^\+[1-9]{1}[0-9]{3,14}$');
 
-    if (!egyptianPattern.hasMatch(phoneNumber)) {
+    final loosePattern = RegExp(
+      r'^[+]{1}[0-9]{1,3}[\s-]?[0-9]{1,14}([\s-]?[0-9]{1,13})?$',
+    );
+
+    if (!internationalPattern.hasMatch(phoneNumber) &&
+        !loosePattern.hasMatch(phoneNumber)) {
+      return LocaleKeys.InvalidPhoneNumber.tr();
+    }
+
+    if (phoneNumber.length < 5 || phoneNumber.length > 16) {
       return LocaleKeys.InvalidPhoneNumber.tr();
     }
 

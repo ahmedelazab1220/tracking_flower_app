@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:tracking_flower_app/features/onBoarding/presentation/view/on_boarding_screen.dart';
 
+import '../../../features/apply/presentation/view/apply_screen.dart';
 import '../../../features/login/presentation/view/screens/login_screen.dart';
-
 import '../../../features/forget_password/presentation/view/email_verification_screen.dart';
 import '../../../features/forget_password/presentation/view/forget_password_screen.dart';
 import '../../../features/forget_password/presentation/view/reset_password_screen.dart';
+import '../../../features/onBoarding/presentation/view/on_boarding_screen.dart';
 
 class AppRoutes {
   AppRoutes._();
@@ -32,5 +32,6 @@ class AppRoutes {
       final email = args['email'];
       return EmailVerificationScreen(email: email);
     },
+    applyRoute: (context) => const ApplyScreen(),
   };
 }

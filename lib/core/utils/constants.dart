@@ -8,4 +8,7 @@ class Constants {
   static const String token = 'token';
   static const String isRememberMe = 'isRememberMe';
   static const String selectedLanguageCode = 'selectedLanguageCode';
+  static const String assetsCountries = 'assets/countries/country.json';
+  static const String aiModelVersion = 'gemini-1.5-flash';
+  static const int addNumberToConvertToFlag = 127397;
 }
