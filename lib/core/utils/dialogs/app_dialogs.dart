@@ -154,7 +154,7 @@ class AppDialogs {
                     ? Text(
                       description,
                       textAlign: TextAlign.center,
-                      maxLines: 2,
+                      maxLines: 3,
                     )
                     : null,
             contentPadding: const EdgeInsets.only(

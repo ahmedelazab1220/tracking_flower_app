@@ -1,7 +1,7 @@
 {
     "Login": "تسجيل الدخول",
     "ApplyNow": "قدّم الآن",
-    "WelcomeToFloweryRiderApp": "مرحبًا بك في تطبيق فلاوري رايدر",
+    "WelcomeToFloweryRiderApp": "مرحبًا بك في\nتطبيق فلاوري رايدر",
     "Email": "البريد الإلكتروني",
     "EnterYourEmail": "أدخل بريدك الإلكتروني",
     "Password": "كلمة المرور",
@@ -118,5 +118,19 @@
     "English": "الإنجليزية",
     "TakeAPhoto": "التقط صورة",
     "ChooseFromGallery": "اختر من المعرض",
-    "Loading": "جار التحميل..."
+    "Loading": "جار التحميل...",
+    "EnterYourNewPassword": "أدخل كلمة المرور الجديدة",
+    "ResendIn": "إعادة الإرسال في",
+    "DidNotReceiveTheCode": "لم تستلم الرمز؟",
+    "PasswordRequirements": "يجب ألا تكون كلمة المرور فارغة ويجب أن تحتوي على 6 أحرف مع حرف كبير ورقم واحد على الأقل",
+    "EnterAValidEmail": "أدخل بريدًا إلكترونيًا صالحًا",
+    "EmailCannotBeEmpty": "البريد الإلكتروني لا يمكن أن يكون فارغًا",
+    "PasswordCannotBeEmpty": "كلمة المرور لا يمكن أن تكون فارغة",
+    "Version": "v 6.3.0 - (446)",
+    "ConfirmPasswordMustMatch": "تأكيد كلمة المرور يجب أن يتطابق مع كلمة المرور",
+    "NameCannotBeEmpty": "الاسم لا يمكن أن يكون فارغًا",
+    "InvalidName": "يرجى إدخال اسم صالح بدون أحرف خاصة.",
+    "PhoneNumberCannotBeEmpty": "رقم الهاتف لا يمكن أن يكون فارغًا",
+    "InvalidPhoneNumber": "رقم غير صالح. تأكد من أنه يبدأ بـ 010، 011، 012، أو 015 ويحتوي على 11 رقمًا.",
+    "InvalidPassword": "كلمة مرور غير صالحة"
 }
