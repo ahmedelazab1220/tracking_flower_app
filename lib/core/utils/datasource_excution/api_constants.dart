@@ -11,4 +11,7 @@ class ApiConstants {
   static const String apply = "drivers/apply";
   /////////////////////////// Vehicles Routes //////////////////////////
   static const String vehicles = "vehicles";
+
+  /////////////////////////// Orders Routes //////////////////////////
+  static const String orders = "order/driver-order";
 }

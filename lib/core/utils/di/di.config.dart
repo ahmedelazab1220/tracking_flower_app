@@ -25,11 +25,36 @@ import '../../../data/auth/data_source/local/auth_local_data_source_impl.dart'
 import '../../../data/auth/data_source/remote/auth_remote_data_source_impl.dart'
     as _i173;
 import '../../../data/auth/repo_impl/auth_repo_impl.dart' as _i15;
+import '../../../data/order/api/orders_retrofit_client.dart' as _i873;
+import '../../../data/order/data_source/contract/order_item_remote_data_source.dart'
+    as _i931;
+import '../../../data/order/data_source/contract/orders_remote_data_source.dart'
+    as _i1041;
+import '../../../data/order/data_source/contract/store_remote_data_source.dart'
+    as _i293;
+import '../../../data/order/data_source/contract/user_remote_data_source.dart'
+    as _i481;
+import '../../../data/order/data_source/remote/order_item_remote_data_source_impl.dart'
+    as _i726;
+import '../../../data/order/data_source/remote/orders_remote_data_source_impl.dart'
+    as _i438;
+import '../../../data/order/data_source/remote/store_remote_data_source_impl.dart'
+    as _i471;
+import '../../../data/order/data_source/remote/user_remote_data_source_impl.dart'
+    as _i508;
 import '../../../domain/auth/repo/auth_repo.dart' as _i1047;
 import '../../../domain/auth/use_case/login_use_case.dart' as _i872;
 import '../../../domain/auth/usecase/forget_password_use_case.dart' as _i615;
 import '../../../domain/auth/usecase/reset_password_use_case.dart' as _i313;
 import '../../../domain/auth/usecase/verify_reset_code_use_case.dart' as _i684;
+import '../../../domain/order/repo/order_item_repo.dart' as _i907;
+import '../../../domain/order/repo/orders_repo.dart' as _i1011;
+import '../../../domain/order/repo/store_repo.dart' as _i371;
+import '../../../domain/order/repo/user_repo.dart' as _i558;
+import '../../../domain/order/usecase/get_order_item_usecase.dart' as _i761;
+import '../../../domain/order/usecase/get_orders_usecase.dart' as _i847;
+import '../../../domain/order/usecase/get_store_usecase.dart' as _i443;
+import '../../../domain/order/usecase/get_user_usecase.dart' as _i563;
 import '../../../features/forget_password/presentation/view_model/email_verification_cubit/email_verification_cubit.dart'
     as _i296;
 import '../../../features/forget_password/presentation/view_model/forget_password_cubit/forget_password_cubit.dart'
@@ -72,6 +97,18 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i649.BlocObserverService>(
       () => _i649.BlocObserverService(gh<_i974.Logger>()),
     );
+    gh.factory<_i563.GetUserUsecase>(
+      () => _i563.GetUserUsecase(gh<_i558.UserRepo>()),
+    );
+    gh.factory<_i761.GetOrderItemUsecase>(
+      () => _i761.GetOrderItemUsecase(gh<_i907.OrderItemRepo>()),
+    );
+    gh.factory<_i847.GetOrdersUsecase>(
+      () => _i847.GetOrdersUsecase(gh<_i1011.OrdersRepo>()),
+    );
+    gh.factory<_i443.GetStoreUsecase>(
+      () => _i443.GetStoreUsecase(gh<_i371.StoreRepo>()),
+    );
     gh.factory<_i687.RouteInitializer>(
       () => _i687.RouteInitializer(
         sharedPreferences: gh<_i460.SharedPreferences>(),
@@ -86,8 +123,14 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i460.SharedPreferences>(),
       ),
     );
+    gh.singleton<_i873.OrdersRetrofitClient>(
+      () => _i873.OrdersRetrofitClient(gh<_i361.Dio>()),
+    );
     gh.factory<_i1064.AuthRetrofitClient>(
       () => _i1064.AuthRetrofitClient(gh<_i361.Dio>()),
+    );
+    gh.factory<_i293.StoreRemoteDataSource>(
+      () => _i471.StoreRemoteDatasourceImpl(gh<_i873.OrdersRetrofitClient>()),
     );
     gh.factory<_i774.AuthRemoteDataSource>(
       () => _i173.AuthRemoteDataSourceImpl(gh<_i1064.AuthRetrofitClient>()),
@@ -98,6 +141,16 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i1063.AuthLocalDataSource>(),
         gh<_i28.ApiManager>(),
       ),
+    );
+    gh.factory<_i481.UserRemoteDataSource>(
+      () => _i508.UserRemoteDatasourceImpl(gh<_i873.OrdersRetrofitClient>()),
+    );
+    gh.factory<_i1041.OrdersRemoteDataSource>(
+      () => _i438.OrdersRemoteDatasourceImpl(gh<_i873.OrdersRetrofitClient>()),
+    );
+    gh.factory<_i931.OrderItemRemoteDataSource>(
+      () =>
+          _i726.OrderItemRemoteDatasourceImpl(gh<_i873.OrdersRetrofitClient>()),
     );
     gh.factory<_i615.ForgetPasswordUseCase>(
       () => _i615.ForgetPasswordUseCase(gh<_i1047.AuthRepo>()),
