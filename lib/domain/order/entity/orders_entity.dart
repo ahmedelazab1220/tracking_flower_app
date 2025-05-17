@@ -1,15 +1,17 @@
 class OrdersEntity {
-  final String? orderNumber;
-  final bool? isDelivered;
-  final int? totalPrice;
-  final String? paymentType;
-  final String? state;
+  final String id;
+  final String orderNumber;
+  final bool isDelivered;
+  final int totalPrice;
+  final String paymentType;
+  final String state;
 
   const OrdersEntity({
-    this.orderNumber,
-    this.isDelivered,
-    this.totalPrice,
-    this.paymentType,
-    this.state,
+    required this.id,
+    required this.orderNumber,
+    required this.isDelivered,
+    required this.totalPrice,
+    required this.paymentType,
+    required this.state,
   });
 }

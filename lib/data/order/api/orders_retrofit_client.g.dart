@@ -20,7 +20,7 @@ class _OrdersRetrofitClient implements OrdersRetrofitClient {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<OrdersDto> getOrders() async {
+  Future<OrdersDto> getOrders(String ordersId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -47,7 +47,7 @@ class _OrdersRetrofitClient implements OrdersRetrofitClient {
   }
 
   @override
-  Future<OrderItemDto> getOrderItem() async {
+  Future<OrderItemDto> getOrderItem(String orderItemId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -74,7 +74,7 @@ class _OrdersRetrofitClient implements OrdersRetrofitClient {
   }
 
   @override
-  Future<StoreDto> getStore() async {
+  Future<StoreDto> getStore(String storeId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -101,7 +101,7 @@ class _OrdersRetrofitClient implements OrdersRetrofitClient {
   }
 
   @override
-  Future<UserDto> getUser() async {
+  Future<UserDto> getUser(String userId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};

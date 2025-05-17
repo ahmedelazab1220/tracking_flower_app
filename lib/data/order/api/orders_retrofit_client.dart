@@ -17,14 +17,22 @@ abstract class OrdersRetrofitClient {
   factory OrdersRetrofitClient(Dio dio) = _OrdersRetrofitClient;
 
   @GET(ApiConstants.orders)
-  Future<OrdersDto> getOrders();
+  Future<OrdersDto> getOrders(String s
+
+  );
 
   @GET(ApiConstants.orders)
-  Future<OrderItemDto> getOrderItem();
+  Future<OrderItemDto> getOrderItem(
+    @Query('productId') String productId,
+  );
 
   @GET(ApiConstants.orders)
-  Future<StoreDto> getStore();
+  Future<StoreDto> getStore(
+    @Query('storeId') String storeId,
+  );
 
   @GET(ApiConstants.orders)
-  Future<UserDto> getUser();
+  Future<UserDto> getUser(
+    @Query('userId') String userId,
+  );
 }

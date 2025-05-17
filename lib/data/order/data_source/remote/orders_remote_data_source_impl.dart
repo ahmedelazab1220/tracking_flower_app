@@ -12,6 +12,8 @@ class OrdersRemoteDatasourceImpl implements OrdersRemoteDataSource {
 
   @override
   Future<OrdersDto> getOrders() async {
-    return await _ordersRetrofitClient.getOrders();
+    return await _ordersRetrofitClient.getOrders(
+      'userId',
+    );
   }
 }

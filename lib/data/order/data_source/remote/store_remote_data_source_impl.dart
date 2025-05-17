@@ -12,6 +12,8 @@ class StoreRemoteDatasourceImpl implements StoreRemoteDataSource {
 
   @override
   Future<StoreDto> getStore() async {
-    return await _storeRetrofitClient.getStore();
+    return await _storeRetrofitClient.getStore(
+      'storeId',
+    );
   }
 }
