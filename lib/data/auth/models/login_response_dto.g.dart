@@ -13,7 +13,4 @@ LoginResponseDto _$LoginResponseDtoFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$LoginResponseDtoToJson(LoginResponseDto instance) =>
-    <String, dynamic>{
-      'message': instance.message,
-      'token': instance.token,
-    };
+    <String, dynamic>{'message': instance.message, 'token': instance.token};
