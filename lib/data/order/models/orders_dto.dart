@@ -7,12 +7,13 @@ part 'orders_dto.g.dart';
 
 @JsonSerializable()
 class OrdersDto {
+  final String? id;
   @JsonKey(name: "message")
   final String? message;
   final MetadataDto? metadata;
   final List<MainOrderDto>? orders;
 
-  OrdersDto({this.message, this.metadata, this.orders});
+  OrdersDto({this.id, this.message, this.metadata, this.orders});
 
   factory OrdersDto.fromJson(Map<String, dynamic> json) =>
       _$OrdersDtoFromJson(json);

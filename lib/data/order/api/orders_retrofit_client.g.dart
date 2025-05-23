@@ -20,12 +20,12 @@ class _OrdersRetrofitClient implements OrdersRetrofitClient {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<OrdersDto> getOrders(String ordersId) async {
+  Future<OrderDto> getOrders(String ordersIt) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<OrdersDto>(
+    final _options = _setStreamType<OrderDto>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -36,9 +36,9 @@ class _OrdersRetrofitClient implements OrdersRetrofitClient {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late OrdersDto _value;
+    late OrderDto _value;
     try {
-      _value = OrdersDto.fromJson(_result.data!);
+      _value = OrderDto.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -47,9 +47,9 @@ class _OrdersRetrofitClient implements OrdersRetrofitClient {
   }
 
   @override
-  Future<OrderItemDto> getOrderItem(String orderItemId) async {
+  Future<OrderItemDto> getOrderItem(String productId) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'productId': productId};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<OrderItemDto>(
@@ -76,7 +76,7 @@ class _OrdersRetrofitClient implements OrdersRetrofitClient {
   @override
   Future<StoreDto> getStore(String storeId) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'storeId': storeId};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<StoreDto>(
@@ -103,7 +103,7 @@ class _OrdersRetrofitClient implements OrdersRetrofitClient {
   @override
   Future<UserDto> getUser(String userId) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'userId': userId};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<UserDto>(

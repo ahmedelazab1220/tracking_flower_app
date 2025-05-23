@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:tracking_flower_app/domain/order/entity/user_entity.dart';
 
 part 'user_dto.g.dart';
 
@@ -27,4 +28,13 @@ class UserDto {
       _$UserDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserDtoToJson(this);
+
+  UserEntity toEntity() {
+    return UserEntity(
+      id: id ?? "",
+      firstName: firstName ?? "",
+      lastName: lastName ?? "",
+      photo: photo ?? "",
+    );
+  }
 }

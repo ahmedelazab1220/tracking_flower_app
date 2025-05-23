@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../core/base/base_state.dart';
 import '../../../../core/utils/datasource_excution/api_result.dart';
 import '../../../../domain/order/entity/order_item_entity.dart';
@@ -27,7 +28,7 @@ class OrdersCubit extends Cubit<OrdersState> {
   void doIntent(OrdersAction action) {
     switch (action) {
       case GetOrdersAction():
-        _getOrders();
+        _getOrders(action.ordersId);
       case GetOrderItemAction():
         _getOrderItem(action.productId);
       case GetUserAction():
@@ -37,13 +38,13 @@ class OrdersCubit extends Cubit<OrdersState> {
     }
   }
 
-  Future<void> _getOrders() async {
+  Future<void> _getOrders(String ordersId) async {
     emit(state.copyWith(baseState: BaseLoadingState()));
-    final result = await _getOrdersUsecase();
+    final result = await _getOrdersUsecase(ordersId);
     switch (result) {
-      case SuccessResult<OrdersEntity>():
+      case SuccessResult<OrderEntity>():
         emit(state.copyWith(baseState: BaseSuccessState(data: result.data)));
-      case FailureResult<OrdersEntity>():
+      case FailureResult<OrderEntity>():
         emit(
           state.copyWith(
             baseState: BaseErrorState(
@@ -56,7 +57,7 @@ class OrdersCubit extends Cubit<OrdersState> {
 
   Future<void> _getStore(String storeId) async {
     emit(state.copyWith(baseState: BaseLoadingState()));
-    final result = await _getStoreUsecase();
+    final result = await _getStoreUsecase(storeId);
     switch (result) {
       case SuccessResult<StoreEntity>():
         emit(state.copyWith(baseState: BaseSuccessState(data: result.data)));
@@ -73,7 +74,7 @@ class OrdersCubit extends Cubit<OrdersState> {
 
   Future<void> _getUser(String userId) async {
     emit(state.copyWith(baseState: BaseLoadingState()));
-    final result = await _getUserUsecase();
+    final result = await _getUserUsecase(userId);
     switch (result) {
       case SuccessResult<UserEntity>():
         emit(state.copyWith(baseState: BaseSuccessState(data: result.data)));
@@ -90,7 +91,7 @@ class OrdersCubit extends Cubit<OrdersState> {
 
   Future<void> _getOrderItem(String productId) async {
     emit(state.copyWith(baseState: BaseLoadingState()));
-    final result = await _getOrderItemUsecase();
+    final result = await _getOrderItemUsecase(productId);
     switch (result) {
       case SuccessResult<OrderItemEntity>():
         emit(state.copyWith(baseState: BaseSuccessState(data: result.data)));

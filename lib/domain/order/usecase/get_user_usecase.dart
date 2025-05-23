@@ -10,7 +10,7 @@ class GetUserUsecase {
 
   GetUserUsecase(this._userRepo);
 
-  Future<Result<UserEntity>> call() async {
-    return await _userRepo.getUser();
+  Future<Result<UserEntity>> call(String userId) async {
+    return await _userRepo.getUser(userId);
   }
 }

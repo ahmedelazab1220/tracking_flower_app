@@ -1,5 +1,5 @@
-import '../../models/orders_dto.dart';
+import '../../models/order_dto.dart';
 
 abstract class OrdersRemoteDataSource {
-  Future<OrdersDto> getOrders();
+  Future<OrderDto> getOrders(String orderId);
 }

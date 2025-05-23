@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 
 import '../../api/orders_retrofit_client.dart';
-import '../../models/orders_dto.dart';
+import '../../models/order_dto.dart';
 import '../contract/orders_remote_data_source.dart';
 
 @Injectable(as: OrdersRemoteDataSource)
@@ -11,9 +11,7 @@ class OrdersRemoteDatasourceImpl implements OrdersRemoteDataSource {
   OrdersRemoteDatasourceImpl(this._ordersRetrofitClient);
 
   @override
-  Future<OrdersDto> getOrders() async {
-    return await _ordersRetrofitClient.getOrders(
-      'userId',
-    );
+  Future<OrderDto> getOrders(String userId) async {
+    return await _ordersRetrofitClient.getOrders(userId);
   }
 }

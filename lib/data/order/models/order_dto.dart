@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../../domain/order/entity/orders_entity.dart';
 import 'order_item_dto.dart';
 import 'user_dto.dart';
 
@@ -38,4 +39,20 @@ class OrderDto {
       _$OrderDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$OrderDtoToJson(this);
+
+  OrderEntity toEntity() {
+    return OrderEntity(
+      id: id ?? '',
+      orderNumber: orderNumber ?? '',
+      totalPrice: totalPrice ?? 0,
+      isDelivered: isDelivered ?? false,
+      paymentType: paymentType ?? '',
+      state: state ?? '',
+      createdAt: createdAt ?? '',
+      isPaid: isPaid ?? false,
+      orderItems: orderItems?.map((e) => e.toEntity()).toList() ?? [],
+      updatedAt: updatedAt ?? '',
+      user: user?.toEntity(),
+    );
+  }
 }

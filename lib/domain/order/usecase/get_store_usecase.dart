@@ -10,7 +10,7 @@ class GetStoreUsecase {
 
   GetStoreUsecase(this._storeRepo);
 
-  Future<Result<StoreEntity>> call() async {
-    return await _storeRepo.getStore();
+  Future<Result<StoreEntity>> call(String storeId) async {
+    return await _storeRepo.getStore(storeId);
   }
 }

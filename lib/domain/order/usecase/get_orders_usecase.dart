@@ -10,7 +10,7 @@ class GetOrdersUsecase {
 
   GetOrdersUsecase(this._ordersRepo);
 
-  Future<Result<OrdersEntity>> call() async {
-    return await _ordersRepo.getOrders();
+  Future<Result<OrderEntity>> call(String ordersId) async {
+    return await _ordersRepo.getOrders(ordersId);
   }
 }

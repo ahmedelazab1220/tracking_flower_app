@@ -22,15 +22,19 @@ final class GetUserAction extends OrdersAction {
   final String userId;
   GetUserAction(this.userId);
 }
+
 final class GetStoreAction extends OrdersAction {
   final String storeId;
   GetStoreAction(this.storeId);
 }
+
 final class GetOrderItemAction extends OrdersAction {
   final String productId;
   GetOrderItemAction(this.productId);
 }
+
 final class GetOrdersAction extends OrdersAction {
-  final String userId;
-  GetOrdersAction(this.userId);
+  final String ordersId;
+
+  GetOrdersAction(this.ordersId);
 }

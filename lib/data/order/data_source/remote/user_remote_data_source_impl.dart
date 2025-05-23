@@ -11,9 +11,7 @@ class UserRemoteDatasourceImpl implements UserRemoteDataSource {
   UserRemoteDatasourceImpl(this._userRetrofitClient);
 
   @override
-  Future<UserDto> getUser() async {
-    return await _userRetrofitClient.getUser(
-      'userId',
-    );
+  Future<UserDto> getUser(String userId) async {
+    return await _userRetrofitClient.getUser(userId);
   }
 }

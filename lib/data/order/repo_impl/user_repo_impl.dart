@@ -11,9 +11,9 @@ class UserRepositoryImpl implements UserRepo {
   UserRepositoryImpl(this._userRemoteDataSource, this._apiManager);
 
   @override
-  Future<Result<UserEntity>> getUser() async {
+  Future<Result<UserEntity>> getUser(String userId) async {
     return await _apiManager.execute(() async {
-      final response = await _userRemoteDataSource.getUser();
+      final response = await _userRemoteDataSource.getUser(userId);
       return response.toEntity();
     });
   }

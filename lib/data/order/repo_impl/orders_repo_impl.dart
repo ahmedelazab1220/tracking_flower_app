@@ -11,9 +11,9 @@ class OrdersRepositoryImpl implements OrdersRepo {
   OrdersRepositoryImpl(this._ordersRemoteDataSource, this._apiManager);
 
   @override
-  Future<Result<OrdersEntity>> getOrders() async {
-    return await _apiManager.execute(() async {
-      final response = await _ordersRemoteDataSource.getOrders();
+  Future<Result<OrderEntity>> getOrders(String ordersId) async {
+    return await _apiManager.execute<OrderEntity>(() async {
+      final response = await _ordersRemoteDataSource.getOrders(ordersId);
       return response.toEntity();
     });
   }
