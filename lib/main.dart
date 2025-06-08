@@ -60,6 +60,7 @@ class _MyAppState extends State<MyApp> {
           theme: AppTheme.appTheme,
           routes: AppRoutes.routes,
           initialRoute: routeInitializer.computeInitialRoute(),
+          // initialRoute: routeInitializer.computeInitialRoute(),
         );
       },
     );
