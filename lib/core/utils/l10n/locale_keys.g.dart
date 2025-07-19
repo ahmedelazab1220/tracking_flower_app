@@ -136,11 +136,31 @@ abstract class LocaleKeys {
   static const EnterAValidEmail = 'EnterAValidEmail';
   static const EmailCannotBeEmpty = 'EmailCannotBeEmpty';
   static const PasswordCannotBeEmpty = 'PasswordCannotBeEmpty';
+  static const Version = 'Version';
   static const ConfirmPasswordMustMatch = 'ConfirmPasswordMustMatch';
   static const NameCannotBeEmpty = 'NameCannotBeEmpty';
   static const InvalidName = 'InvalidName';
   static const PhoneNumberCannotBeEmpty = 'PhoneNumberCannotBeEmpty';
   static const InvalidPhoneNumber = 'InvalidPhoneNumber';
   static const InvalidPassword = 'InvalidPassword';
-  static const Version = 'Version';
+  static const VehicleNumberCannotBeEmpty = 'VehicleNumberCannotBeEmpty';
+  static const InvalidVehicleNumber = 'InvalidVehicleNumber';
+  static const EnterYourVehicleNumber = 'EnterYourVehicleNumber';
+  static const UploadLicensePhoto = 'UploadLicensePhoto';
+  static const ChooseFromCamera = 'ChooseFromCamera';
+  static const CountriesNotFoundPleaseTryAgain =
+      'CountriesNotFoundPleaseTryAgain';
+  static const VehiclesNotFoundPleaseTryAgain =
+      'VehiclesNotFoundPleaseTryAgain';
+  static const PleaseEnsureYourVehicleNumber = 'PleaseEnsureYourVehicleNumber';
+  static const PleaseEnsureYourNationalIDNumber =
+      'PleaseEnsureYourNationalIDNumber';
+  static const PleaseEnsureYourSecondLegalName =
+      'PleaseEnsureYourSecondLegalName';
+  static const PleaseEnsureYourFirstLegalName =
+      'PleaseEnsureYourFirstLegalName';
+  static const ScanningVehicleLicense = 'ScanningVehicleLicense';
+  static const ScanningNationalID = 'ScanningNationalID';
+  static const InvalidVehicleLicense = 'InvalidVehicleLicense';
+  static const InvalidNationalID = 'InvalidNationalID';
 }

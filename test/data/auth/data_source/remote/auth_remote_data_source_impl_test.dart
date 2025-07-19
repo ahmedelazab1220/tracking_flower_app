@@ -5,6 +5,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:tracking_flower_app/core/utils/datasource_excution/api_constants.dart';
+import 'package:tracking_flower_app/data/auth/api/ai_model_service.dart';
+import 'package:tracking_flower_app/data/auth/api/apply_api_manager.dart';
 import 'package:tracking_flower_app/data/auth/api/auth_retrofit_client.dart';
 import 'package:tracking_flower_app/data/auth/data_source/remote/auth_remote_data_source_impl.dart';
 import 'package:tracking_flower_app/data/auth/models/forget_password_request_dto.dart';
@@ -19,11 +21,13 @@ import 'package:tracking_flower_app/data/auth/models/verify_reset_code_response_
 import '../../../../constants_factory.dart';
 import 'auth_remote_data_source_impl_test.mocks.dart';
 
-@GenerateMocks([AuthRetrofitClient])
+@GenerateMocks([AuthRetrofitClient, AiModelService, ApplyApiManager])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   late AuthRemoteDataSourceImpl authRemoteDataSourceImpl;
+  late MockAiModelService mockAiModelService;
   late MockAuthRetrofitClient mockAuthRetrofitClient;
+  late MockApplyApiManager mockApplyApiManager;
 
   // Test data
   const validEmail = 'valid@example.com';
@@ -45,7 +49,13 @@ void main() {
 
   setUp(() {
     mockAuthRetrofitClient = MockAuthRetrofitClient();
-    authRemoteDataSourceImpl = AuthRemoteDataSourceImpl(mockAuthRetrofitClient);
+    mockAiModelService = MockAiModelService();
+    mockApplyApiManager = MockApplyApiManager();
+    authRemoteDataSourceImpl = AuthRemoteDataSourceImpl(
+      mockAuthRetrofitClient,
+      mockAiModelService,
+      mockApplyApiManager,
+    );
   });
 
   group('login', () {

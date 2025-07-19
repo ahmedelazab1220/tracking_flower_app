@@ -1,3 +1,5 @@
+import '../../models/country_dto.dart';
+
 abstract class AuthLocalDataSource {
   Future<void> saveToken(String key, String value);
 
@@ -10,4 +12,6 @@ abstract class AuthLocalDataSource {
   Future<bool> isRememberMe();
 
   Future<void> clearAll();
+
+  Future<List<CountryDto>> getAllCountries();
 }

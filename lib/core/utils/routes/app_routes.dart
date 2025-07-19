@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../features/apply/presentation/view/apply_screen.dart';
 import '../../../features/login/presentation/view/screens/login_screen.dart';
-
 import '../../../features/forget_password/presentation/view/email_verification_screen.dart';
 import '../../../features/forget_password/presentation/view/forget_password_screen.dart';
 import '../../../features/forget_password/presentation/view/reset_password_screen.dart';
@@ -32,5 +32,6 @@ class AppRoutes {
       final email = args['email'];
       return EmailVerificationScreen(email: email);
     },
+    applyRoute: (context) => const ApplyScreen(),
   };
 }

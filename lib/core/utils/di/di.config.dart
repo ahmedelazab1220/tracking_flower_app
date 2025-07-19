@@ -15,6 +15,9 @@ import 'package:injectable/injectable.dart' as _i526;
 import 'package:logger/logger.dart' as _i974;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
+import '../../../data/auth/api/ai_model_service.dart' as _i422;
+import '../../../data/auth/api/apply_api_manager.dart' as _i1054;
+import '../../../data/auth/api/apply_api_manager_impl.dart' as _i700;
 import '../../../data/auth/api/auth_retrofit_client.dart' as _i1064;
 import '../../../data/auth/data_source/contract/auth_local_data_source.dart'
     as _i1063;
@@ -26,10 +29,19 @@ import '../../../data/auth/data_source/remote/auth_remote_data_source_impl.dart'
     as _i173;
 import '../../../data/auth/repo_impl/auth_repo_impl.dart' as _i15;
 import '../../../domain/auth/repo/auth_repo.dart' as _i1047;
+import '../../../domain/auth/use_case/apply_use_case.dart' as _i13;
+import '../../../domain/auth/use_case/extract_data_from_national_id_use_case.dart'
+    as _i413;
+import '../../../domain/auth/use_case/extract_data_from_vehicle_license_use_case.dart'
+    as _i29;
+import '../../../domain/auth/use_case/get_all_countries_use_case.dart' as _i488;
+import '../../../domain/auth/use_case/get_all_vehicles_use_case.dart' as _i377;
 import '../../../domain/auth/use_case/login_use_case.dart' as _i872;
 import '../../../domain/auth/usecase/forget_password_use_case.dart' as _i615;
 import '../../../domain/auth/usecase/reset_password_use_case.dart' as _i313;
 import '../../../domain/auth/usecase/verify_reset_code_use_case.dart' as _i684;
+import '../../../features/apply/presentation/view_model/cubit/apply_cubit.dart'
+    as _i571;
 import '../../../features/forget_password/presentation/view_model/email_verification_cubit/email_verification_cubit.dart'
     as _i296;
 import '../../../features/forget_password/presentation/view_model/forget_password_cubit/forget_password_cubit.dart'
@@ -63,6 +75,7 @@ extension GetItInjectableX on _i174.GetIt {
       preResolve: true,
     );
     gh.factory<_i468.Validator>(() => _i468.Validator());
+    gh.factory<_i422.AiModelService>(() => _i422.AiModelService());
     gh.singleton<_i28.ApiManager>(() => _i28.ApiManager());
     gh.lazySingleton<_i558.FlutterSecureStorage>(
       () => secureStorageModule.storage,
@@ -86,11 +99,18 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i460.SharedPreferences>(),
       ),
     );
+    gh.factory<_i1054.ApplyApiManager>(
+      () => _i700.ApplyApiManagerImpl(gh<_i361.Dio>()),
+    );
     gh.factory<_i1064.AuthRetrofitClient>(
       () => _i1064.AuthRetrofitClient(gh<_i361.Dio>()),
     );
     gh.factory<_i774.AuthRemoteDataSource>(
-      () => _i173.AuthRemoteDataSourceImpl(gh<_i1064.AuthRetrofitClient>()),
+      () => _i173.AuthRemoteDataSourceImpl(
+        gh<_i1064.AuthRetrofitClient>(),
+        gh<_i422.AiModelService>(),
+        gh<_i1054.ApplyApiManager>(),
+      ),
     );
     gh.factory<_i1047.AuthRepo>(
       () => _i15.AuthRepoImpl(
@@ -107,6 +127,21 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i684.VerifyResetCodeUseCase>(
       () => _i684.VerifyResetCodeUseCase(gh<_i1047.AuthRepo>()),
+    );
+    gh.factory<_i413.ExtractDataFromNationalIdUseCase>(
+      () => _i413.ExtractDataFromNationalIdUseCase(gh<_i1047.AuthRepo>()),
+    );
+    gh.factory<_i29.ExtractDataFromVehicleLicenseUseCase>(
+      () => _i29.ExtractDataFromVehicleLicenseUseCase(gh<_i1047.AuthRepo>()),
+    );
+    gh.factory<_i488.GetAllCountriesUseCase>(
+      () => _i488.GetAllCountriesUseCase(gh<_i1047.AuthRepo>()),
+    );
+    gh.factory<_i377.GetAllVehiclesUseCase>(
+      () => _i377.GetAllVehiclesUseCase(gh<_i1047.AuthRepo>()),
+    );
+    gh.factory<_i13.ApplyUseCase>(
+      () => _i13.ApplyUseCase(gh<_i1047.AuthRepo>()),
     );
     gh.factory<_i872.LoginUsecase>(
       () => _i872.LoginUsecase(gh<_i1047.AuthRepo>()),
@@ -126,6 +161,16 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i638.LoginCubit>(
       () => _i638.LoginCubit(gh<_i872.LoginUsecase>(), gh<_i468.Validator>()),
+    );
+    gh.factory<_i571.ApplyCubit>(
+      () => _i571.ApplyCubit(
+        gh<_i377.GetAllVehiclesUseCase>(),
+        gh<_i488.GetAllCountriesUseCase>(),
+        gh<_i29.ExtractDataFromVehicleLicenseUseCase>(),
+        gh<_i413.ExtractDataFromNationalIdUseCase>(),
+        gh<_i13.ApplyUseCase>(),
+        gh<_i468.Validator>(),
+      ),
     );
     gh.factory<_i3.ForgetPasswordCubit>(
       () => _i3.ForgetPasswordCubit(

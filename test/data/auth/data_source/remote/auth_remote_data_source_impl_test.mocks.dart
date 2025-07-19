@@ -3,25 +3,40 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i7;
+import 'dart:async' as _i11;
+import 'dart:io' as _i17;
 
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:tracking_flower_app/data/auth/api/ai_model_service.dart'
+    as _i16;
+import 'package:tracking_flower_app/data/auth/api/apply_api_manager.dart'
+    as _i18;
 import 'package:tracking_flower_app/data/auth/api/auth_retrofit_client.dart'
-    as _i6;
-import 'package:tracking_flower_app/data/auth/models/forget_password_request_dto.dart'
+    as _i10;
+import 'package:tracking_flower_app/data/auth/models/apply_request_dto.dart'
+    as _i19;
+import 'package:tracking_flower_app/data/auth/models/apply_response_dto.dart'
     as _i9;
+import 'package:tracking_flower_app/data/auth/models/forget_password_request_dto.dart'
+    as _i13;
 import 'package:tracking_flower_app/data/auth/models/forget_password_response_dto.dart'
     as _i3;
 import 'package:tracking_flower_app/data/auth/models/login_request_dto.dart'
-    as _i8;
+    as _i12;
 import 'package:tracking_flower_app/data/auth/models/login_response_dto.dart'
     as _i2;
+import 'package:tracking_flower_app/data/auth/models/national_id_dto.dart'
+    as _i7;
 import 'package:tracking_flower_app/data/auth/models/reset_password_request_dto.dart'
-    as _i11;
+    as _i15;
 import 'package:tracking_flower_app/data/auth/models/reset_password_response_dto.dart'
     as _i5;
+import 'package:tracking_flower_app/data/auth/models/vehicle_license_dto.dart'
+    as _i8;
+import 'package:tracking_flower_app/data/auth/models/vehicles_response_dto.dart'
+    as _i6;
 import 'package:tracking_flower_app/data/auth/models/verify_reset_code_request_dto.dart'
-    as _i10;
+    as _i14;
 import 'package:tracking_flower_app/data/auth/models/verify_reset_code_response_dto.dart'
     as _i4;
 
@@ -63,70 +78,169 @@ class _FakeResetPasswordResponseDto_3 extends _i1.SmartFake
     : super(parent, parentInvocation);
 }
 
+class _FakeVehiclesResponseDto_4 extends _i1.SmartFake
+    implements _i6.VehiclesResponseDto {
+  _FakeVehiclesResponseDto_4(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
+class _FakeNationalIdDto_5 extends _i1.SmartFake implements _i7.NationalIdDto {
+  _FakeNationalIdDto_5(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
+class _FakeVehicleLicenseDto_6 extends _i1.SmartFake
+    implements _i8.VehicleLicenseDto {
+  _FakeVehicleLicenseDto_6(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
+class _FakeApplyResponseDto_7 extends _i1.SmartFake
+    implements _i9.ApplyResponseDto {
+  _FakeApplyResponseDto_7(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
 /// A class which mocks [AuthRetrofitClient].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockAuthRetrofitClient extends _i1.Mock
-    implements _i6.AuthRetrofitClient {
+    implements _i10.AuthRetrofitClient {
   MockAuthRetrofitClient() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i7.Future<_i2.LoginResponseDto> login(_i8.LoginRequestDto? request) =>
+  _i11.Future<_i2.LoginResponseDto> login(_i12.LoginRequestDto? request) =>
       (super.noSuchMethod(
             Invocation.method(#login, [request]),
-            returnValue: _i7.Future<_i2.LoginResponseDto>.value(
+            returnValue: _i11.Future<_i2.LoginResponseDto>.value(
               _FakeLoginResponseDto_0(
                 this,
                 Invocation.method(#login, [request]),
               ),
             ),
           )
-          as _i7.Future<_i2.LoginResponseDto>);
+          as _i11.Future<_i2.LoginResponseDto>);
 
   @override
-  _i7.Future<_i3.ForgetPasswordResponseDto> forgetPassword(
-    _i9.ForgetPasswordRequestDto? request,
+  _i11.Future<_i3.ForgetPasswordResponseDto> forgetPassword(
+    _i13.ForgetPasswordRequestDto? request,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#forgetPassword, [request]),
-            returnValue: _i7.Future<_i3.ForgetPasswordResponseDto>.value(
+            returnValue: _i11.Future<_i3.ForgetPasswordResponseDto>.value(
               _FakeForgetPasswordResponseDto_1(
                 this,
                 Invocation.method(#forgetPassword, [request]),
               ),
             ),
           )
-          as _i7.Future<_i3.ForgetPasswordResponseDto>);
+          as _i11.Future<_i3.ForgetPasswordResponseDto>);
 
   @override
-  _i7.Future<_i4.VerifyResetCodeResponseDto> verifyResetCode(
-    _i10.VerifyResetCodeRequestDto? request,
+  _i11.Future<_i4.VerifyResetCodeResponseDto> verifyResetCode(
+    _i14.VerifyResetCodeRequestDto? request,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#verifyResetCode, [request]),
-            returnValue: _i7.Future<_i4.VerifyResetCodeResponseDto>.value(
+            returnValue: _i11.Future<_i4.VerifyResetCodeResponseDto>.value(
               _FakeVerifyResetCodeResponseDto_2(
                 this,
                 Invocation.method(#verifyResetCode, [request]),
               ),
             ),
           )
-          as _i7.Future<_i4.VerifyResetCodeResponseDto>);
+          as _i11.Future<_i4.VerifyResetCodeResponseDto>);
 
   @override
-  _i7.Future<_i5.ResetPasswordResponseDto> resetPassword(
-    _i11.ResetPasswordRequestDto? request,
+  _i11.Future<_i5.ResetPasswordResponseDto> resetPassword(
+    _i15.ResetPasswordRequestDto? request,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#resetPassword, [request]),
-            returnValue: _i7.Future<_i5.ResetPasswordResponseDto>.value(
+            returnValue: _i11.Future<_i5.ResetPasswordResponseDto>.value(
               _FakeResetPasswordResponseDto_3(
                 this,
                 Invocation.method(#resetPassword, [request]),
               ),
             ),
           )
-          as _i7.Future<_i5.ResetPasswordResponseDto>);
+          as _i11.Future<_i5.ResetPasswordResponseDto>);
+
+  @override
+  _i11.Future<_i6.VehiclesResponseDto> getVehicles() =>
+      (super.noSuchMethod(
+            Invocation.method(#getVehicles, []),
+            returnValue: _i11.Future<_i6.VehiclesResponseDto>.value(
+              _FakeVehiclesResponseDto_4(
+                this,
+                Invocation.method(#getVehicles, []),
+              ),
+            ),
+          )
+          as _i11.Future<_i6.VehiclesResponseDto>);
+}
+
+/// A class which mocks [AiModelService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAiModelService extends _i1.Mock implements _i16.AiModelService {
+  MockAiModelService() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i11.Future<_i7.NationalIdDto> extractDataFromNationalId(
+    _i17.File? imageFile,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#extractDataFromNationalId, [imageFile]),
+            returnValue: _i11.Future<_i7.NationalIdDto>.value(
+              _FakeNationalIdDto_5(
+                this,
+                Invocation.method(#extractDataFromNationalId, [imageFile]),
+              ),
+            ),
+          )
+          as _i11.Future<_i7.NationalIdDto>);
+
+  @override
+  _i11.Future<_i8.VehicleLicenseDto> extractDataFromVehicleLicense(
+    _i17.File? imageFile,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#extractDataFromVehicleLicense, [imageFile]),
+            returnValue: _i11.Future<_i8.VehicleLicenseDto>.value(
+              _FakeVehicleLicenseDto_6(
+                this,
+                Invocation.method(#extractDataFromVehicleLicense, [imageFile]),
+              ),
+            ),
+          )
+          as _i11.Future<_i8.VehicleLicenseDto>);
+}
+
+/// A class which mocks [ApplyApiManager].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockApplyApiManager extends _i1.Mock implements _i18.ApplyApiManager {
+  MockApplyApiManager() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i11.Future<_i9.ApplyResponseDto> apply(
+    _i19.ApplyRequestDto? applyRequestDto,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#apply, [applyRequestDto]),
+            returnValue: _i11.Future<_i9.ApplyResponseDto>.value(
+              _FakeApplyResponseDto_7(
+                this,
+                Invocation.method(#apply, [applyRequestDto]),
+              ),
+            ),
+          )
+          as _i11.Future<_i9.ApplyResponseDto>);
 }

@@ -9,6 +9,7 @@ import '../models/forget_password_request_dto.dart';
 import '../models/forget_password_response_dto.dart';
 import '../models/reset_password_request_dto.dart';
 import '../models/reset_password_response_dto.dart';
+import '../models/vehicles_response_dto.dart';
 import '../models/verify_reset_code_request_dto.dart';
 import '../models/verify_reset_code_response_dto.dart';
 
@@ -37,4 +38,7 @@ abstract class AuthRetrofitClient {
   Future<ResetPasswordResponseDto> resetPassword(
     @Body() ResetPasswordRequestDto request,
   );
+
+  @GET(ApiConstants.vehicles)
+  Future<VehiclesResponseDto> getVehicles();
 }
